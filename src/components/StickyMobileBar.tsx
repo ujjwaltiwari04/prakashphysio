@@ -1,7 +1,8 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { Phone, MessageSquare, Calendar } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { Phone, Calendar } from 'lucide-react';
 
 interface StickyMobileBarProps {
   lang: Language;
@@ -31,7 +32,7 @@ export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({ lang, onOpenAp
           rel="noopener noreferrer"
           className="bg-[#0F4C81] active:bg-[#0c3e6a] text-white py-3 px-2 rounded-xl text-center font-bold text-xs flex flex-col items-center justify-center gap-1 shadow-md active:scale-95 transition-transform"
         >
-          <MessageSquare className="w-5 h-5 fill-current" />
+          <WhatsAppIcon className="w-5 h-5" />
           <span>WhatsApp</span>
         </a>
 

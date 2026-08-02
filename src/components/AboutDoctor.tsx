@@ -54,95 +54,99 @@ export const AboutDoctor: React.FC<AboutDoctorProps> = ({ lang, onOpenAppointmen
     setActivePhotoIdx((prev) => (prev - 1 + doctorPhotos.length) % doctorPhotos.length);
   };
 
+  const renderDoctorCarousel = () => (
+    <div className="relative mx-auto max-w-md lg:max-w-none">
+      {/* Background Accent */}
+      <div className="absolute -inset-2 bg-gradient-to-tr from-[#0F4C81] to-[#2E8BC0] rounded-3xl transform rotate-2 opacity-20 blur-xs" />
+      
+      <div className="relative bg-slate-900 rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-4/5 group">
+        {/* Slides */}
+        {doctorPhotos.map((photo, idx) => (
+          <div
+            key={photo.url}
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+              idx === activePhotoIdx ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            <img
+              src={photo.url}
+              alt={lang === 'hi' ? photo.captionHi : photo.captionEn}
+              className="w-full h-full object-contain bg-slate-950 p-2"
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="750"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20" />
+            
+            {/* Photo Caption Badge */}
+            <div className="absolute bottom-20 left-3 right-3 z-20 text-white">
+              <p className="bg-slate-900/80 backdrop-blur-xs text-[11px] sm:text-xs p-2 rounded-lg border border-white/10 text-center font-medium font-poppins">
+                {lang === 'hi' ? photo.captionHi : photo.captionEn}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* Slider Controls */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 hover:bg-black text-white transition-colors"
+          aria-label="Previous Doctor Photo"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 hover:bg-black text-white transition-colors"
+          aria-label="Next Doctor Photo"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* Floating Experience Badge */}
+        <div className="absolute bottom-3 left-3 right-3 z-30 bg-slate-900/90 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 shadow-lg flex items-center gap-3">
+          <div className="w-10 h-10 bg-red-600 text-white font-extrabold rounded-lg flex items-center justify-center text-lg flex-shrink-0">
+            12+
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="font-bold text-xs sm:text-sm font-poppins truncate">
+              {lang === 'hi' ? 'वर्षों का चिकित्सीय अनुभव' : 'Years Clinical Experience'}
+            </div>
+            <div className="text-[11px] text-sky-200 truncate">
+              {lang === 'hi' ? 'दिल्ली के शीर्ष अस्पतालों में कार्य अनुभव' : 'Ex-Physiotherapist in Top Delhi Hospitals'}
+            </div>
+          </div>
+        </div>
+
+        {/* Dots indicator */}
+        <div className="absolute top-3 right-3 z-30 flex items-center gap-1 bg-black/60 px-2 py-1 rounded-full">
+          {doctorPhotos.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActivePhotoIdx(i)}
+              className={`w-1.5 h-1.5 rounded-full transition-all ${
+                i === activePhotoIdx ? 'bg-amber-400 w-3' : 'bg-white/60'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section id="doctor" className="py-12 sm:py-16 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          {/* Doctor Image & Clinical Photo Slider */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Background Accent */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-[#0F4C81] to-[#2E8BC0] rounded-3xl transform rotate-2 opacity-20 blur-xs" />
-              
-              <div className="relative bg-slate-900 rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-4/5 group">
-                {/* Slides */}
-                {doctorPhotos.map((photo, idx) => (
-                  <div
-                    key={photo.url}
-                    className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-                      idx === activePhotoIdx ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                    }`}
-                  >
-                    <img
-                      src={photo.url}
-                      alt={lang === 'hi' ? photo.captionHi : photo.captionEn}
-                      className="w-full h-full object-contain bg-slate-950 p-2"
-                      loading="lazy"
-                      decoding="async"
-                      width="600"
-                      height="750"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20" />
-                    
-                    {/* Photo Caption Badge */}
-                    <div className="absolute bottom-20 left-3 right-3 z-20 text-white">
-                      <p className="bg-slate-900/80 backdrop-blur-xs text-[11px] sm:text-xs p-2 rounded-lg border border-white/10 text-center font-medium font-poppins">
-                        {lang === 'hi' ? photo.captionHi : photo.captionEn}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-
-                {/* Slider Controls */}
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 hover:bg-black text-white transition-colors"
-                  aria-label="Previous Doctor Photo"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/60 hover:bg-black text-white transition-colors"
-                  aria-label="Next Doctor Photo"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-
-                {/* Floating Experience Badge */}
-                <div className="absolute bottom-3 left-3 right-3 z-30 bg-slate-900/90 backdrop-blur-md text-white p-3 rounded-xl border border-white/20 shadow-lg flex items-center gap-3">
-                  <div className="w-10 h-10 bg-red-600 text-white font-extrabold rounded-lg flex items-center justify-center text-lg flex-shrink-0">
-                    12+
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-xs sm:text-sm font-poppins truncate">
-                      {lang === 'hi' ? 'वर्षों का चिकित्सीय अनुभव' : 'Years Clinical Experience'}
-                    </div>
-                    <div className="text-[11px] text-sky-200 truncate">
-                      {lang === 'hi' ? 'दिल्ली के शीर्ष अस्पतालों में कार्य अनुभव' : 'Ex-Physiotherapist in Top Delhi Hospitals'}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dots indicator */}
-                <div className="absolute top-3 right-3 z-30 flex items-center gap-1 bg-black/60 px-2 py-1 rounded-full">
-                  {doctorPhotos.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setActivePhotoIdx(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-all ${
-                        i === activePhotoIdx ? 'bg-amber-400 w-3' : 'bg-white/60'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+          {/* Desktop Doctor Image & Clinical Photo Slider */}
+          <div className="hidden lg:block lg:col-span-5 relative">
+            {renderDoctorCarousel()}
           </div>
 
           {/* Doctor Details */}
@@ -174,6 +178,11 @@ export const AboutDoctor: React.FC<AboutDoctorProps> = ({ lang, onOpenAppointmen
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* Mobile Doctor Photo Carousel (Appears immediately below Qualifications Card on Mobile) */}
+            <div className="lg:hidden my-6">
+              {renderDoctorCarousel()}
             </div>
 
             {/* Bio Paragraph */}

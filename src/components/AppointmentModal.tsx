@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Language, AppointmentFormData } from '../types';
 import { translations } from '../data/translations';
-import { X, Calendar, Phone, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { X, Calendar, Phone, CheckCircle2 } from 'lucide-react';
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -235,7 +236,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   type="submit"
                   className="w-full py-3.5 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white font-bold rounded-xl text-sm shadow-md flex items-center justify-center gap-2"
                 >
-                  <MessageSquare className="w-4 h-4 fill-current" />
+                  <WhatsAppIcon className="w-4 h-4" />
                   <span>{t.submitFormBtn}</span>
                 </button>
 

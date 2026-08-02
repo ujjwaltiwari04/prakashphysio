@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { Phone, MessageSquare, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, MapPin } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { Phone, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck, MapPin } from 'lucide-react';
 
 interface HeroSectionProps {
   lang: Language;
@@ -72,6 +73,82 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     { id: 'post-knee-replacement', hi: 'ऑपरेशन के बाद रीहैब (Post Surgery)', en: 'Post Surgery Rehab' }
   ];
 
+  const renderCarousel = () => (
+    <div>
+      <div className="relative bg-slate-900 rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-4/3 sm:aspect-16/11 group">
+        {/* Slides */}
+        {slides.map((slide, idx) => (
+          <div
+            key={slide.url}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <img
+              src={slide.url}
+              alt={lang === 'hi' ? slide.captionHi : slide.captionEn}
+              className="w-full h-full object-cover"
+              loading={idx === 0 ? "eager" : "lazy"}
+              decoding="async"
+              width="800"
+              height="600"
+            />
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
+            
+            {/* Slide Caption */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-xs sm:text-sm font-medium z-20">
+              <p className="bg-slate-900/90 backdrop-blur-xs p-2.5 rounded-lg border border-white/10 text-center font-poppins">
+                {lang === 'hi' ? slide.captionHi : slide.captionEn}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* Prev / Next Arrows */}
+        <button
+          type="button"
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* Indicator Dots */}
+        <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-black/50 px-2 py-1 rounded-full">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setCurrentSlide(i)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === currentSlide ? 'bg-amber-400 w-4' : 'bg-white/60'
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Quick Caption below Carousel */}
+      <p className="text-center text-xs text-slate-500 mt-2 font-medium italic">
+        {lang === 'hi'
+          ? 'प्रकाश फिजियोथेरेपी क्लिनिक - भीमनगर (सुपौल)'
+          : 'Prakash Physiotherapy Clinic - Real Treatment Facilities'}
+      </p>
+    </div>
+  );
+
   return (
     <section className="bg-gradient-to-b from-sky-50/80 via-white to-slate-50 py-8 lg:py-14 border-b border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -118,6 +195,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {lang === 'hi' ? '12+ वर्षों का अनुभव | M.I.A.P 42989 | G.A.P.T Registered' : '12+ Yrs Exp | M.I.A.P 42989 | G.A.P.T Registered'}
                 </div>
               </div>
+            </div>
+
+            {/* Mobile Photo Carousel (Appears immediately after Dr. Abhay Prakash Tiwari on Mobile) */}
+            <div className="lg:hidden my-4">
+              {renderCarousel()}
             </div>
 
             {/* Transparent Fees & Home Visit Banner */}
@@ -195,7 +277,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white py-3.5 px-4 sm:px-6 rounded-xl font-extrabold text-sm sm:text-base transition-all shadow-lg active:scale-95 text-center"
               >
-                <MessageSquare className="w-5 h-5 fill-current flex-shrink-0" />
+                <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
                 <span>{t.whatsappChat}</span>
               </a>
             </div>
@@ -213,79 +295,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
           </div>
 
-          {/* RIGHT SIDE: Clean Photo Carousel */}
-          <div className="lg:col-span-5">
-            <div className="relative bg-slate-900 rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-4/3 sm:aspect-16/11 group">
-              {/* Slides */}
-              {slides.map((slide, idx) => (
-                <div
-                  key={slide.url}
-                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                  }`}
-                >
-                  <img
-                    src={slide.url}
-                    alt={lang === 'hi' ? slide.captionHi : slide.captionEn}
-                    className="w-full h-full object-cover"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    decoding="async"
-                    width="800"
-                    height="600"
-                  />
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
-                  
-                  {/* Slide Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-xs sm:text-sm font-medium z-20">
-                    <p className="bg-slate-900/90 backdrop-blur-xs p-2.5 rounded-lg border border-white/10 text-center font-poppins">
-                      {lang === 'hi' ? slide.captionHi : slide.captionEn}
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Prev / Next Arrows */}
-              <button
-                type="button"
-                onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-black/40 hover:bg-black/70 text-white transition-colors"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Indicator Dots */}
-              <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-black/50 px-2 py-1 rounded-full">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setCurrentSlide(i)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      i === currentSlide ? 'bg-amber-400 w-4' : 'bg-white/60'
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Quick Caption below Carousel */}
-            <p className="text-center text-xs text-slate-500 mt-2 font-medium italic">
-              {lang === 'hi'
-                ? 'प्रकाश फिजियोथेरेपी क्लिनिक - भीमनगर (सुपौल)'
-                : 'Prakash Physiotherapy Clinic - Real Treatment Facilities'}
-            </p>
+          {/* RIGHT SIDE: Desktop Photo Carousel */}
+          <div className="hidden lg:block lg:col-span-5">
+            {renderCarousel()}
           </div>
 
         </div>

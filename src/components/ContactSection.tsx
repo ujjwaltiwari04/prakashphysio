@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Language, AppointmentFormData } from '../types';
 import { translations } from '../data/translations';
-import { MapPin, Phone, Clock, MessageSquare, Send, CheckCircle2, Navigation } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { MapPin, Phone, Clock, Send, CheckCircle2, Navigation } from 'lucide-react';
 
 interface ContactSectionProps {
   lang: Language;
@@ -376,7 +377,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     type="submit"
                     className="w-full sm:flex-1 py-4 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white font-bold rounded-xl text-base shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
-                    <MessageSquare className="w-5 h-5 fill-current" />
+                    <WhatsAppIcon className="w-5 h-5" />
                     <span>{t.submitFormBtn}</span>
                   </button>
 

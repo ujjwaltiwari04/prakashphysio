@@ -1,7 +1,8 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { Phone, MessageSquare, Clock, MapPin, Globe } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { Phone, Clock, MapPin, Globe } from 'lucide-react';
 
 interface TopBarProps {
   lang: Language;
@@ -17,9 +18,12 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
         {/* Left: Location & Timings */}
         <div className="flex flex-wrap items-center gap-3 text-sky-100">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 min-w-0">
             <MapPin className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
-            <span className="font-medium truncate max-w-[220px] sm:max-w-xs">{t.locationText}</span>
+            <span className="font-medium text-xs">
+              <span className="sm:hidden">{lang === 'hi' ? 'भंटाबारी रोड, भीमनगर, बीरपुर' : 'Bhantabari Road, Bhimnagar, Birpur'}</span>
+              <span className="hidden sm:inline">{t.locationText}</span>
+            </span>
           </div>
           <div className="hidden md:flex items-center gap-1 border-l border-sky-700 pl-3">
             <Clock className="w-3.5 h-3.5 text-sky-300 flex-shrink-0" />
@@ -52,7 +56,7 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
             className="flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white px-2.5 py-1 rounded-md font-bold transition-all shadow-xs text-xs"
             title={t.whatsappChat}
           >
-            <MessageSquare className="w-3.5 h-3.5 fill-current" />
+            <WhatsAppIcon className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 
