@@ -1,0 +1,22 @@
+{
+  "name": "Prakash Physiotherapy Clinic - Dr. Abhay Prakash Tiwari",
+  "short_name": "Prakash Physio",
+  "description": "Best Physiotherapy Clinic in Bhimnagar, Supaul, Birpur & Nepal border by Dr. Abhay Prakash Tiwari (M.P.T. Orthopedics New Delhi).",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0F4C81",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

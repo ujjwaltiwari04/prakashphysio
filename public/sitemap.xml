@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://prakashphysioclinic.com/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Multi-language alternates -->
+    <xhtml:link rel="alternate" hreflang="hi" href="https://prakashphysioclinic.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://prakashphysioclinic.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://prakashphysioclinic.com/" />
+
+    <!-- Google Image SEO Indexing -->
+    <image:image>
+      <image:loc>https://prakashphysioclinic.com/img/Abhay%20Prakash.webp</image:loc>
+      <image:title>Dr. Abhay Prakash Tiwari - M.P.T. Orthopedics Physiotherapist</image:title>
+      <image:caption>Senior Physiotherapy Specialist at Prakash Physiotherapy Clinic, Bhimnagar, Supaul</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysioclinic.com/img/Prakash%20Physio%20Hero.webp</image:loc>
+      <image:title>Prakash Physiotherapy Clinic Facilities</image:title>
+      <image:caption>Modern physiotherapy treatment beds and rehabilitation equipment in Bhimnagar</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysioclinic.com/img/Therapy%20Session%201.webp</image:loc>
+      <image:title>Manual Spine & Joint Decompression Session</image:title>
+      <image:caption>Dr. Abhay Prakash Tiwari performing manual therapy for back pain and sciatica</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysioclinic.com/img/electrotherapy.webp</image:loc>
+      <image:title>Advanced Electrotherapy Equipment</image:title>
+      <image:caption>Electrical muscle stimulation and IFT treatment for paralysis and nerve pain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysioclinic.com/img/clinic%20photo.webp</image:loc>
+      <image:title>Prakash Physiotherapy Clinic Exterior Signboard</image:title>
+      <image:caption>Clinic entrance on Bhantabari Road, Bhimnagar, Birpur, Supaul, Bihar</image:caption>
+    </image:image>
+  </url>
+</urlset>

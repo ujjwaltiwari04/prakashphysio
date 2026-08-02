@@ -1,0 +1,6 @@
+{
+  "name": "Prakash Physiotherapy Clinic",
+  "description": "Bilingual (Hindi & English) clinic website for Dr. Abhay Prakash Tiwari in Bhimnagar, Supaul, Birpur & Nepal border.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

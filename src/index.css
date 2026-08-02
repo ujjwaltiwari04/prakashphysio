@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif;
+  }
+}
+
+/* Custom Utilities for High Contrast Medical Theme */
+.bg-clinic-primary {
+  background-color: #0F4C81;
+}
+
+.text-clinic-primary {
+  color: #0F4C81;
+}
+
+.border-clinic-primary {
+  border-color: #0F4C81;
+}
+
+.bg-clinic-secondary {
+  background-color: #2E8BC0;
+}
+
+.text-clinic-secondary {
+  color: #2E8BC0;
+}
+
+.bg-clinic-accent {
+  background-color: #4CAF50;
+}
+
+.text-clinic-accent {
+  color: #4CAF50;
+}
+
+/* Print styles for appointment slips / prescription receipts if needed */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
