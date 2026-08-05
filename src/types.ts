@@ -68,6 +68,7 @@ export interface GoogleReview {
   textEn: string;
   treatmentTagHi: string;
   treatmentTagEn: string;
+  source?: 'google' | 'patient';
 }
 
 export interface FAQItem {

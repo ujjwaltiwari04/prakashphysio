@@ -50,7 +50,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Back Pain & Lumbar Spine Therapy",
     category: "spine",
     iconName: "Activity",
-    image: "/img/Prakash Physio Hero.webp",
+    image: "/img/backpain.webp",
     shortDescHi: "लंबे समय से कमर दर्द, झुकने में तकलीफ या रीढ़ की हड्डी में अकड़न का सटीक फिजियोथेरेपी इलाज।",
     shortDescEn: "Comprehensive physical therapy for chronic lower back stiffness, postural stress, and lumbar spine dysfunction.",
     fullDescHi: "कमर दर्द (Back Pain) आज के समय में अत्यधिक वजन उठाने, गलत मुद्रा में बैठने या उम्र के साथ रीढ़ की हड्डी में घिसाव के कारण बहुत सामान्य है। हमारे क्लिनिक में आईएफटी, ट्रैक्शन, कोर स्ट्रेंथेनिंग और मैनुअल थेरेपी द्वारा बिना किसी सर्जरी या दर्द निवारक दवाइयों के कमर दर्द का जड़ से इलाज किया जाता है।",
@@ -69,7 +69,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Sciatica Nerve Compression Therapy",
     category: "spine",
     iconName: "Zap",
-    image: "/img/Therapy Session 1.webp",
+    image: "/img/nerve compression therapy.webp",
     shortDescHi: "कमर से लेकर पैर की उंगलियों तक जाने वाली नस के खिंचाव और झनझनाहट का सटीक समाधान।",
     shortDescEn: "Targeted decompression therapy for sciatic nerve irritation radiating down the leg.",
     fullDescHi: "साइटिका में कमर की दबी हुई नस के कारण पूरे पैर में तेज दर्द, चींटियां काटने जैसी झनझनाहट और सुन्नपन महसूस होता है। हमारी एडवांस्ड न्यूरो-मोबिलाइजेशन तकनीक से दबी हुई नस का दबाव कम किया जाता है जिससे मरीज को त्वरित राहत मिलती है।",
@@ -88,7 +88,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Non-Surgical Slip Disc Rehabilitation",
     category: "spine",
     iconName: "Disc",
-    image: "/img/Prakash Physio Hero.webp",
+    image: "/img/slip_disc.webp",
     shortDescHi: "बिना ऑपरेशन रीढ़ की डिस्क को उसकी सही स्थिति में लाने के लिए विशिष्ट स्पाइनल रीहैब।",
     shortDescEn: "Specialized spinal rehabilitation to retract herniated discs without invasive spinal surgery.",
     fullDescHi: "जब रीढ़ की हड्डी के बीच की गद्दी (Disc) बाहर निकल आती है तो वह नसों को दबाने लगती है। सही समय पर मेकेंजी (McKenzie) विधि और स्पाइनल ट्रैक्शन द्वारा 90% से अधिक स्लिप डिस्क के मामलों को बिना सर्जरी के ठीक किया जा सकता है।",
@@ -107,7 +107,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Paralysis & Stroke Neuro Rehabilitation",
     category: "neuro",
     iconName: "HeartPulse",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
+    image: "/img/stroke_paralysis.webp",
     shortDescHi: "ब्रेन स्ट्रोक के बाद शरीर के अंगों की गति और चलने-फिरने की क्षमता वापस लाने की न्यूरो थेरेपी।",
     shortDescEn: "Expert neurological rehabilitation restoring muscle strength, gait, and mobility after brain stroke.",
     fullDescHi: "लकवा (Paralysis/Hemiplegia) होने के बाद मांसपेशियों का सुन्न होना या नियंत्रण खो जाना बहुत दुखद होता है। न्यूरो-फिजियोथेरेपी तकनीक (PNF, Bobath Concept) द्वारा दिमाग की नसों को पुनर्जीवित करने का प्रयास किया जाता है ताकि मरीज आत्मनिर्भर बन सके।",
@@ -126,7 +126,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Cervical Spondylosis & Neck Pain Care",
     category: "spine",
     iconName: "ShieldAlert",
-    image: "https://images.unsplash.com/photo-1512290900676-26c2a6a095ae?auto=format&fit=crop&w=800&q=80",
+    image: "/img/Therapy Session 1.webp",
     shortDescHi: "गर्दन में अकड़न, चक्कर आना और हाथों में दर्द जाने की सर्वाइकल समस्या का इलाज।",
     shortDescEn: "Effective relief for cervical spondylosis, neck muscle spasm, and radiating arm numbness.",
     fullDescHi: "गर्दन की हड्डियों में घिसाव (Cervical Spondylosis) या गलत तकिया लगाने से सिरदर्द, चक्कर और हाथों तक झनझनाहट फैल सकती है। सर्वाइकल ट्रैक्शन, सॉफ्ट टिश्यू मोबिलाइजेशन और नेक आइसोमेट्रिक्स द्वारा मरीज को स्थायी आराम मिलता है।",
@@ -145,7 +145,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Knee Joint Pain & Osteoarthritis Therapy",
     category: "joint",
     iconName: "Activity",
-    image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+    image: "/img/knee_osteoarthritis.webp",
     shortDescHi: "उम्र के साथ घुटने की गद्दी घिसने, कट-कट आवाज आने व सीढ़ी चढ़ने में दर्द का वैज्ञानिक इलाज।",
     shortDescEn: "Targeted joint lubrication exercises, strengthening, and pain relief modalities for knee osteoarthritis.",
     fullDescHi: "ऑस्टियोआर्थराइटिस (Osteoarthritis) में घुटने के अंदर का कार्टिलेज घिस जाता है जिससे हड्डियों का आपस में रगड होना शुरू हो जाता है। हमारे क्लिनिक में क्वाड्रीसेप्स मजबूती, लेजर/अल्ट्रासाउंड थेरेपी और मोबिलाइजेशन से घुटने के ऑपरेशन को टाला जा सकता है।",
@@ -164,7 +164,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Frozen Shoulder & Adhesive Capsulitis",
     category: "joint",
     iconName: "Dumbbell",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80",
+    image: "/img/frozen_shoulder.webp",
     shortDescHi: "कंधे का पूरी तरह जाम हो जाना, हाथ ऊपर न उठना और रात में सोने पर असहनीय दर्द।",
     shortDescEn: "Gradual shoulder capsule release, range-of-motion restoration, and pain relief therapy.",
     fullDescHi: "फ्रोजन शोल्डर (Adhesive Capsulitis) में कंधे की कैप्सूल सिकुड़ जाती है। मरीज न तो कपड़े बदल पाता है और न ही हाथ पीछे ले जा पाता है। पैसिव मोबिलाइजेशन, शुल्डर पुली, लेजर थेरेपी और स्ट्रेचिंग से कंधे की गति पूरी तरह बहाल की जाती है।",
@@ -183,7 +183,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Post-Total Knee Replacement (TKR) Rehab",
     category: "rehab",
     iconName: "Activity",
-    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=800&q=80",
+    image: "/img/post_knee_rehab.webp",
     shortDescHi: "घुटने का ऑपरेशन (TKR) कराने के बाद फिर से बिना सहारे चलना और घुटना मोड़ना सीखने का रीहैब।",
     shortDescEn: "Step-by-step physical therapy to regain full knee flexion, walking balance, and independence post surgery.",
     fullDescHi: "घुटने के रिप्लेसमेंट (TKR) के बाद सही फिजियोथेरेपी ही ऑपरेशन की सफलता तय करती है। हमारे क्लिनिक पर या होम केयर मार्गदर्शन में घुटना मोड़ने का अभ्यास, सूजन कम करना और बिना लाठी चलना सिखाया जाता है।",
@@ -202,7 +202,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Bell's Palsy & Facial Nerve Rehabilitation",
     category: "neuro",
     iconName: "Smile",
-    image: "/img/electrotherapy.webp",
+    image: "/img/bells_palsy.webp",
     shortDescHi: "मुंह का टेढ़ा होना, आंख बंद न होना या थूक/पानी बाहर निकलने का न्यूरो-स्टिम्यूलेशन इलाज।",
     shortDescEn: "Targeted facial nerve electrical stimulation and biofeedback exercises for rapid facial symmetry recovery.",
     fullDescHi: "बेल्स पाल्सी (Bell's Palsy) में चेहरे की सातवीं नस (Facial Nerve) में सूजन के कारण चेहरे का एक हिस्सा सुन्न या टेढ़ा हो जाता है। गैल्वेनिक मसल स्टिम्युलेटर (GMS) और चेहरे की विशेष कसरत से 2 से 4 सप्ताह में चेहरा पुनः सामान्य हो जाता है।",
@@ -240,7 +240,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Advanced Dry Needling & Trigger Point Therapy",
     category: "specialized",
     iconName: "Needle",
-    image: "/img/injury showcase.webp",
+    image: "/img/dry_needling.webp",
     shortDescHi: "मांसपेशियों के गहरे दर्दनाक ट्रिगर पॉइंट्स को सूक्ष्म सुई द्वारा तुरंत रिलैक्स करने की आधुनिक विधि।",
     shortDescEn: "Targeted insertion of fine acupuncture needles into muscular trigger points for immediate deep pain release.",
     fullDescHi: "ड्राई नीडलिंग एक अत्यधिक प्रभावी तकनीक है जिसमें पतली सुइयों द्वारा मांसपेशियों में बने दर्दनाक गांठों (Trigger Points) को उत्तेजित कर रिलैक्स किया जाता है। इससे सालों पुराना दर्द मिनटों में हल्का हो जाता है।",
@@ -259,7 +259,7 @@ export const treatmentsData: Treatment[] = [
     titleEn: "Myofascial Vacuum Cupping Therapy",
     category: "specialized",
     iconName: "Sparkles",
-    image: "/img/electrotherapy.webp",
+    image: "/img/cupping therapy.webp",
     shortDescHi: "सक्शन कप द्वारा रक्त संचार बढ़ाकर मांसपेशियों की अकड़न और जहरीले तत्वों को दूर करने का इलाज।",
     shortDescEn: "Suction cup therapy promoting deep tissue circulation, myofascial release, and inflammation reduction.",
     fullDescHi: "कपिंग थेरेपी में त्वचा पर वैक्यूम कप लगाए जाते हैं जिससे जकड़ी हुई मांसपेशियां ढीली होती हैं और रक्त का संचार कई गुना बढ़ जाता है। पीठ, कंधे और जांघों की अकड़न में यह तुरंत चमत्कारिक राहत देता है।",
@@ -346,6 +346,34 @@ export const recoveryStoriesData: RecoveryStory[] = [
 
 export const googleReviewsData: GoogleReview[] = [
   {
+    id: "g-rev-1",
+    authorName: "Ujjwal Tiwari",
+    locationHi: "गूगल मैप्स समीक्षा (Google Review)",
+    locationEn: "Google Maps Verified Review",
+    rating: 5,
+    timeAgoHi: "गूगल रीव्यू",
+    timeAgoEn: "Google Verified Review",
+    textHi: "यह क्लिनिक मेरे रिश्तेदार का है, लेकिन मेरी समीक्षा पूरी तरह से सच्ची है। क्रिकेट खेलते समय मेरे हाथ की मांसपेशी में चोट लग गई थी और मैंने यहाँ इलाज कराया। रिकवरी बहुत अच्छी रही और डॉक्टर साहब द्वारा बताए गए व्यायामों से बहुत बड़ा अंतर आया। कुछ ही हफ़्तों में मैं अपने हाथ का सामान्य रूप से इस्तेमाल करने लगा। कुल मिलाकर बहुत अच्छा अनुभव रहा। फिजियोथेरेपी के लिए इस क्लिनिक का निश्चित रूप से सुझाव दूंगा।",
+    textEn: "Well, this clinic belongs to my relative. However, my review is very genuine. I had a hand muscle injury while playing cricket and got treated here. The recovery went really well, and the exercises they suggested made a big difference. Within a few weeks, I was able to use my hand normally again and get back to playing. Overall, a very good experience. Would definitely recommend this clinic for physiotherapy.",
+    treatmentTagHi: "हाथ की मांसपेशीय चोट (Cricket Injury)",
+    treatmentTagEn: "Hand Muscle Injury & Sports Rehab",
+    source: "google"
+  },
+  {
+    id: "g-rev-2",
+    authorName: "SmaRty",
+    locationHi: "गूगल मैप्स समीक्षा (Google Review)",
+    locationEn: "Google Maps Verified Review",
+    rating: 5,
+    timeAgoHi: "गूगल रीव्यू",
+    timeAgoEn: "Google Verified Review",
+    textHi: "चाहे आप भारी वजन उठाने (Heavy Lifting) के खिंचाव से उबर रहे हों, अपनी मूवमेंट मेकैनिक्स को ठीक कर रहे हों या जिम में अपनी पीक परफॉर्मेंस हासिल करने की कोशिश कर रहे हों, डॉ. अभय प्रकाश तिवारी स्पोर्ट्स फिजियोथेरेपी में गोल्ड स्टैंडर्ड हैं। वे केवल दर्द ठीक नहीं करते—वे आपको और अधिक मजबूत और सुरक्षित रूप से वेट लिफ्टिंग करने के लिए तैयार करते हैं।",
+    textEn: "Whether you are recovering from a heavy lifting strain, fixing your movement mechanics, or trying to hit peak performance in the gym, Dr. Abhay Prakash Tiwari is the absolute gold standard in sports physiotherapy. He doesn't just fix the pain—he gets you back to lifting stronger & safer.",
+    treatmentTagHi: "स्पोर्ट्स फिजियो व स्ट्रेंथ रीहैब",
+    treatmentTagEn: "Sports Physiotherapy & Gym Strain Rehab",
+    source: "google"
+  },
+  {
     id: "rev-1",
     authorName: "Subhash Chandra Jha",
     locationHi: "सुपौल, बिहार",
@@ -356,7 +384,8 @@ export const googleReviewsData: GoogleReview[] = [
     textHi: "डॉ. अभय प्रकाश तिवारी सर बहुत ही ज्ञानी और विनम्र हैं। मुझे 2 साल से कमर दर्द था, पटना और दिल्ली में दिखाया पर आराम नहीं मिला। प्रकाश फिजियोथेरेपी भीमनगर में 15 दिन के इलाज से मेरा दर्द गायब हो गया। बहुत-बहुत धन्यवाद!",
     textEn: "Dr. Abhay Prakash Tiwari sir is extremely knowledgeable and patient-friendly. My 2-year old chronic lower back pain was cured in just 15 days of physical therapy at Bhimnagar clinic.",
     treatmentTagHi: "कमर दर्द (Back Pain)",
-    treatmentTagEn: "Back Pain"
+    treatmentTagEn: "Back Pain",
+    source: "patient"
   },
   {
     id: "rev-2",
@@ -369,7 +398,8 @@ export const googleReviewsData: GoogleReview[] = [
     textHi: "बीरपुर और भीमनगर इलाके के लिए डॉ. तिवारी साहब वरदान हैं। पिताजी को स्ट्रोक हुआ था और पैर उठ नहीं रहा था। डॉक्टर साहब के रोजाना फिजियो से अब पिताजी खुद टहलने लगे हैं।",
     textEn: "Dr. Tiwari is a blessing for Birpur and Bhimnagar. My father suffered a stroke and couldn't lift his leg. Thanks to daily neuro physio, he is walking independently now.",
     treatmentTagHi: "लकवा (Paralysis Care)",
-    treatmentTagEn: "Paralysis Care"
+    treatmentTagEn: "Paralysis Care",
+    source: "patient"
   },
   {
     id: "rev-3",
@@ -382,7 +412,8 @@ export const googleReviewsData: GoogleReview[] = [
     textHi: "नेपाल बोर्डरबाट नजिकै भीमनगरमा यति राम्रो फिजियोथेरेपी क्लिनिक पाउनु धेरै खुसीको कुरा हो। डाक्टर साहेबको व्यवहार र उपचार उत्कृष्ट छ। मेरो गर्दन दर्द ठीक भयो।",
     textEn: "Getting such an advanced physiotherapy clinic right across the Nepal border at Bhimnagar is great. Excellent doctor and effective cervical neck treatment.",
     treatmentTagHi: "गर्दन दर्द (Cervical)",
-    treatmentTagEn: "Cervical Neck Pain"
+    treatmentTagEn: "Cervical Neck Pain",
+    source: "patient"
   },
   {
     id: "rev-4",
@@ -395,7 +426,8 @@ export const googleReviewsData: GoogleReview[] = [
     textHi: "मेरा दाहिना कंधा पूरी तरह जाम था (Frozen shoulder)। हाथ ऊपर नहीं उठता था। क्लिनिक की आधुनिक मशीनों और व्यायाम से 20 दिन में हाथ पूरा खुलने लगा।",
     textEn: "My right shoulder was completely frozen. In 20 days of treatment with modern equipment and shoulder exercises, my arm mobility is completely restored.",
     treatmentTagHi: "फ्रोजन शोल्डर (Frozen Shoulder)",
-    treatmentTagEn: "Frozen Shoulder"
+    treatmentTagEn: "Frozen Shoulder",
+    source: "patient"
   }
 ];
 
@@ -580,14 +612,30 @@ Stroke damages brain motor areas. However, through neuroplasticity, the brain ca
 export const galleryData: GalleryImage[] = [
   {
     id: "gal-1",
-    titleHi: "प्रकाश फिजियोथेरेपी क्लिनिक - आधुनिक ट्रीटमेंट रूम एवं उपकरण व्यवस्था",
-    titleEn: "Prakash Physiotherapy Clinic - Modern Treatment Room & Beds, Bhimnagar",
+    titleHi: "कमर दर्द फिजियोथेरेपी व लंबर स्पाइन केयर",
+    titleEn: "Lumbar Spine & Back Pain Physiotherapy",
     category: "clinic",
-    url: "/img/Prakash Physio Hero.webp",
-    alt: "Prakash Physiotherapy Clinic Treatment Beds & Modalities"
+    url: "/img/backpain.webp",
+    alt: "Back pain physical therapy assessment and spine rehab"
   },
   {
     id: "gal-2",
+    titleHi: "साइटिका व नसों का दबाव हटाने की थेरेपी",
+    titleEn: "Sciatica & Nerve Compression Decompression Therapy",
+    category: "equipment",
+    url: "/img/nerve compression therapy.webp",
+    alt: "Nerve compression decompression therapy session"
+  },
+  {
+    id: "gal-3",
+    titleHi: "मायोफेशियल वैक्यूम कपिंग थेरेपी सत्र",
+    titleEn: "Myofascial Vacuum Cupping Therapy Session",
+    category: "equipment",
+    url: "/img/cupping therapy.webp",
+    alt: "Cupping therapy session for muscle relaxation"
+  },
+  {
+    id: "gal-4",
     titleHi: "विशेषज्ञ मैनुअल थेरेपी व नसों की मोबिलाइजेशन थेरेपी - डॉ. अभय प्रकाश तिवारी",
     titleEn: "Expert Manual Therapy & Joint Mobilization Session by Dr. Tiwari",
     category: "doctor",
@@ -595,7 +643,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Dr. Abhay Prakash Tiwari conducting manual physical therapy session"
   },
   {
-    id: "gal-3",
+    id: "gal-5",
     titleHi: "चोट व स्किन बर्न रीहैब - हाथ व टिश्यू पुनर्वास जांच",
     titleEn: "Specialized Injury & Post-Burn Hand Rehabilitation Examination",
     category: "exercise",
@@ -603,7 +651,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Specialized post-burn hand injury recovery examination by Dr. Tiwari"
   },
   {
-    id: "gal-4",
+    id: "gal-6",
     titleHi: "बाल रोग एवं फिजियोथेरेपी उपचार - डॉ. अभय प्रकाश तिवारी मरीजों के साथ",
     titleEn: "Pediatric Physical Therapy & Patient Care by Dr. Abhay Prakash Tiwari",
     category: "doctor",
@@ -611,7 +659,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Pediatric physiotherapy care session with Dr. Tiwari and family"
   },
   {
-    id: "gal-5",
+    id: "gal-7",
     titleHi: "एडवांस्ड इलेक्ट्रोथेरेपी एवं नसों की उत्तेजना उपचार",
     titleEn: "Advanced Electrotherapy & Electrical Nerve Stimulation Care",
     category: "equipment",
@@ -619,7 +667,7 @@ export const galleryData: GalleryImage[] = [
     alt: "Child electrotherapy nerve stimulation treatment session"
   },
   {
-    id: "gal-6",
+    id: "gal-8",
     titleHi: "प्रकाश फिजियोथेरेपी क्लिनिक - बाहरी दृश्य एवं साइनबोर्ड",
     titleEn: "Prakash Physiotherapy Clinic - Exterior Entrance & Signboard",
     category: "clinic",
