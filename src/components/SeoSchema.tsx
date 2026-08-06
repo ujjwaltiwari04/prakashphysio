@@ -108,13 +108,13 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       "alternateName": "प्रकाश फिजियोथेरेपी क्लिनिक एवं अस्पताल भीमनगर (सुपौल)",
       "description": "Premier physiotherapy clinic & non-surgical rehabilitation hospital serving Bhimnagar, Birpur, Supaul District, and Nepal border region. Expert treatment for back pain, sciatica, slip disc, paralysis, and knee pain by Dr. Abhay Prakash Tiwari (M.P.T. Orthopedics New Delhi).",
       "image": [
-        "https://prakashphysioclinic.com/img/Prakash%20Physio%20Hero.webp",
-        "https://prakashphysioclinic.com/img/Abhay%20Prakash.webp",
-        "https://prakashphysioclinic.com/img/Therapy%20Session%201.webp",
-        "https://prakashphysioclinic.com/img/clinic%20photo.webp"
+        "https://prakashphysion.in/img/Prakash%20Physio%20Hero.webp",
+        "https://prakashphysion.in/img/Abhay%20Prakash.webp",
+        "https://prakashphysion.in/img/Therapy%20Session%201.webp",
+        "https://prakashphysion.in/img/clinic%20photo.webp"
       ],
-      "@id": "https://prakashphysioclinic.com/#clinic",
-      "url": "https://prakashphysioclinic.com",
+      "@id": "https://prakashphysion.in/#clinic",
+      "url": "https://prakashphysion.in/",
       "telephone": ["+91-9711700817", "+91-9654874675", "+977-9819053588"],
       "priceRange": "₹₹ (Consultation ₹500, Session ₹300, Home Visit ₹700)",
       "currenciesAccepted": "INR, NPR",
@@ -172,7 +172,7 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
           "Magadh University (B.P.T.)"
         ],
         "identifier": doctorData.registrationNumbers,
-        "image": "https://prakashphysioclinic.com/img/Abhay%20Prakash.webp",
+        "image": "https://prakashphysion.in/img/Abhay%20Prakash.webp",
         "description": doctorData.aboutEn
       }
     };
@@ -191,6 +191,19 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       }))
     };
 
+    // Google SiteName & WebSite Schema (Controls Top Brand Title in Google Search Cards)
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Prakash Physiotherapy Clinic",
+      "alternateName": [
+        "Prakash Physiotherapy Hospital",
+        "प्रकाश फिजियोथेरेपी क्लिनिक",
+        "Prakash Physio"
+      ],
+      "url": "https://prakashphysion.in/"
+    };
+
     // Breadcrumb Schema
     const breadcrumbSchema = {
       "@context": "https://schema.org",
@@ -200,19 +213,19 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
           "@type": "ListItem",
           "position": 1,
           "name": lang === 'hi' ? 'गृह पृष्ठ' : 'Home',
-          "item": "https://prakashphysioclinic.com/"
+          "item": "https://prakashphysion.in/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": lang === 'hi' ? 'इलाज एवं सेवाएं' : 'Treatments',
-          "item": "https://prakashphysioclinic.com/#treatments"
+          "item": "https://prakashphysion.in/#treatments"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": lang === 'hi' ? 'संपर्क करें' : 'Contact',
-          "item": "https://prakashphysioclinic.com/#contact"
+          "item": "https://prakashphysion.in/#contact"
         }
       ]
     };
@@ -229,12 +242,13 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       document.head.appendChild(script);
     };
 
+    injectJsonLd('jsonld-website', websiteSchema);
     injectJsonLd('jsonld-clinic', clinicSchema);
     injectJsonLd('jsonld-faq', faqSchema);
     injectJsonLd('jsonld-breadcrumb', breadcrumbSchema);
 
     return () => {
-      ['jsonld-clinic', 'jsonld-faq', 'jsonld-breadcrumb'].forEach((id) => {
+      ['jsonld-website', 'jsonld-clinic', 'jsonld-faq', 'jsonld-breadcrumb'].forEach((id) => {
         const elem = document.getElementById(id);
         if (elem) elem.remove();
       });
