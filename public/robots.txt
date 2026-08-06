@@ -2,5 +2,6 @@
 User-agent: *
 Allow: /
 
-# Sitemap Location
-Sitemap: https://prakashphysion.in/sitemap.xml
+# Sitemap Locations for Apex and WWW domains
+Sitemap: https://prakashphysio.in/sitemap.xml
+Sitemap: https://www.prakashphysio.in/sitemap.xml

@@ -108,13 +108,13 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       "alternateName": "प्रकाश फिजियोथेरेपी क्लिनिक एवं अस्पताल भीमनगर (सुपौल)",
       "description": "Premier physiotherapy clinic & non-surgical rehabilitation hospital serving Bhimnagar, Birpur, Supaul District, and Nepal border region. Expert treatment for back pain, sciatica, slip disc, paralysis, and knee pain by Dr. Abhay Prakash Tiwari (M.P.T. Orthopedics New Delhi).",
       "image": [
-        "https://prakashphysion.in/img/Prakash%20Physio%20Hero.webp",
-        "https://prakashphysion.in/img/Abhay%20Prakash.webp",
-        "https://prakashphysion.in/img/Therapy%20Session%201.webp",
-        "https://prakashphysion.in/img/clinic%20photo.webp"
+        "https://prakashphysio.in/img/Prakash%20Physio%20Hero.webp",
+        "https://prakashphysio.in/img/Abhay%20Prakash.webp",
+        "https://prakashphysio.in/img/Therapy%20Session%201.webp",
+        "https://prakashphysio.in/img/clinic%20photo.webp"
       ],
-      "@id": "https://prakashphysion.in/#clinic",
-      "url": "https://prakashphysion.in/",
+      "@id": "https://prakashphysio.in/#clinic",
+      "url": "https://prakashphysio.in/",
       "telephone": ["+91-9711700817", "+91-9654874675", "+977-9819053588"],
       "priceRange": "₹₹ (Consultation ₹500, Session ₹300, Home Visit ₹700)",
       "currenciesAccepted": "INR, NPR",
@@ -172,7 +172,7 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
           "Magadh University (B.P.T.)"
         ],
         "identifier": doctorData.registrationNumbers,
-        "image": "https://prakashphysion.in/img/Abhay%20Prakash.webp",
+        "image": "https://prakashphysio.in/img/Abhay%20Prakash.webp",
         "description": doctorData.aboutEn
       }
     };
@@ -201,7 +201,7 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
         "प्रकाश फिजियोथेरेपी क्लिनिक",
         "Prakash Physio"
       ],
-      "url": "https://prakashphysion.in/"
+      "url": "https://prakashphysio.in/"
     };
 
     // Breadcrumb Schema
@@ -213,19 +213,19 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
           "@type": "ListItem",
           "position": 1,
           "name": lang === 'hi' ? 'गृह पृष्ठ' : 'Home',
-          "item": "https://prakashphysion.in/"
+          "item": "https://prakashphysio.in/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": lang === 'hi' ? 'इलाज एवं सेवाएं' : 'Treatments',
-          "item": "https://prakashphysion.in/#treatments"
+          "item": "https://prakashphysio.in/#treatments"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": lang === 'hi' ? 'संपर्क करें' : 'Contact',
-          "item": "https://prakashphysion.in/#contact"
+          "item": "https://prakashphysio.in/#contact"
         }
       ]
     };
