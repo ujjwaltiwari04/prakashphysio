@@ -30,20 +30,29 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
 
+  React.useEffect(() => {
+    if (initialCondition) {
+      setFormData((prev) => ({
+        ...prev,
+        condition: initialCondition
+      }));
+    }
+  }, [initialCondition]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Construct WhatsApp message with patient details
-    const textMessage = `*New Appointment Request - Prakash Physiotherapy Clinic*%0A` +
-      `👤 *Patient Name:* ${formData.patientName}%0A` +
-      `📞 *Phone:* ${formData.phone}%0A` +
-      `📍 *Location/Village:* ${formData.villageLocation}%0A` +
-      `🩺 *Problem:* ${formData.condition}%0A` +
-      `📅 *Preferred Date:* ${formData.preferredDate}%0A` +
-      `⏰ *Slot:* ${formData.preferredTimeSlot}%0A` +
+    const textMessage = `*New Appointment Request - Prakash Physiotherapy Clinic*\n` +
+      `👤 *Patient Name:* ${formData.patientName}\n` +
+      `📞 *Phone:* ${formData.phone}\n` +
+      `📍 *Location/Village:* ${formData.villageLocation}\n` +
+      `🩺 *Problem:* ${formData.condition}\n` +
+      `📅 *Preferred Date:* ${formData.preferredDate}\n` +
+      `⏰ *Slot:* ${formData.preferredTimeSlot}\n` +
       `🗣️ *Language:* ${formData.preferredLanguage === 'hi' ? 'Hindi' : 'English'}`;
 
-    const whatsappUrl = `https://wa.me/919711700817?text=${textMessage}`;
+    const whatsappUrl = `https://wa.me/919711700817?text=${encodeURIComponent(textMessage)}`;
     
     // Open WhatsApp in new tab
     window.open(whatsappUrl, '_blank');

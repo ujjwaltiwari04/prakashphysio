@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
+        <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
           <p>{t.copyrightText}</p>
         </div>
 

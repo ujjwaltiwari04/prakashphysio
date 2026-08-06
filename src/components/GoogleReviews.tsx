@@ -17,14 +17,16 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        // Exclude pre-existing static IDs from localStorage to avoid duplicate items
-        const formattedUserReviews = parsed
-          .filter((r: GoogleReview) => !['g-rev-1', 'g-rev-2', 'rev-1', 'rev-2', 'rev-3', 'rev-4'].includes(r.id))
-          .map((r: GoogleReview) => ({
-            ...r,
-            source: 'patient' as const
-          }));
-        return [...formattedUserReviews, ...googleReviewsData];
+        if (Array.isArray(parsed)) {
+          // Exclude pre-existing static IDs from localStorage to avoid duplicate items
+          const formattedUserReviews = parsed
+            .filter((r: GoogleReview) => r && typeof r === 'object' && r.id && !['g-rev-1', 'g-rev-2', 'rev-1', 'rev-2', 'rev-3', 'rev-4'].includes(r.id))
+            .map((r: GoogleReview) => ({
+              ...r,
+              source: 'patient' as const
+            }));
+          return [...formattedUserReviews, ...googleReviewsData];
+        }
       } catch (e) {
         console.error(e);
       }

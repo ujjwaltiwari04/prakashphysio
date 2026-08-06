@@ -35,6 +35,22 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      setSubmitted(false);
+      setFormData({
+        patientName: '',
+        phone: '',
+        villageLocation: '',
+        condition: initialCondition || '',
+        preferredDate: '',
+        preferredTimeSlot: 'Morning (8:00 AM - 12:00 PM)',
+        preferredLanguage: lang,
+        notes: ''
+      });
+    }
+  }, [isOpen, initialCondition, lang]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -42,16 +58,16 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       ? 'Home Visit Service (Charges: ₹700/session)'
       : 'Clinic OPD Visit (Charges: 1st Visit ₹500, Later ₹300/session)';
 
-    const textMessage = `*New Appointment Booking - Prakash Physiotherapy Clinic*%0A` +
-      `*Visit Type:* ${visitTypeStr}%0A` +
-      `*Patient Name:* ${formData.patientName}%0A` +
-      `*Phone:* ${formData.phone}%0A` +
-      `*Village/Location:* ${formData.villageLocation}%0A` +
-      `*Problem:* ${formData.condition}%0A` +
-      `*Date:* ${formData.preferredDate}%0A` +
+    const textMessage = `*New Appointment Booking - Prakash Physiotherapy Clinic*\n` +
+      `*Visit Type:* ${visitTypeStr}\n` +
+      `*Patient Name:* ${formData.patientName}\n` +
+      `*Phone:* ${formData.phone}\n` +
+      `*Village/Location:* ${formData.villageLocation}\n` +
+      `*Problem:* ${formData.condition}\n` +
+      `*Date:* ${formData.preferredDate}\n` +
       `*Time Slot:* ${formData.preferredTimeSlot}`;
 
-    const whatsappUrl = `https://wa.me/919711700817?text=${textMessage}`;
+    const whatsappUrl = `https://wa.me/919711700817?text=${encodeURIComponent(textMessage)}`;
     window.open(whatsappUrl, '_blank');
     setSubmitted(true);
   };

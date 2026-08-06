@@ -37,21 +37,28 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ lang }) => {
     return () => clearInterval(timer);
   }, [isPlaying, galleryData.length]);
 
+  // Reset selectedImageIndex if activeCategory changes
+  useEffect(() => {
+    setSelectedImageIndex(null);
+  }, [activeCategory]);
+
   const handleNextSlide = () => {
+    if (galleryData.length === 0) return;
     setCurrentCarouselIdx((prev) => (prev + 1) % galleryData.length);
   };
 
   const handlePrevSlide = () => {
+    if (galleryData.length === 0) return;
     setCurrentCarouselIdx((prev) => (prev - 1 + galleryData.length) % galleryData.length);
   };
 
   const handleLightboxNext = () => {
-    if (selectedImageIndex === null) return;
+    if (selectedImageIndex === null || filteredImages.length === 0) return;
     setSelectedImageIndex((selectedImageIndex + 1) % filteredImages.length);
   };
 
   const handleLightboxPrev = () => {
-    if (selectedImageIndex === null) return;
+    if (selectedImageIndex === null || filteredImages.length === 0) return;
     setSelectedImageIndex((selectedImageIndex - 1 + filteredImages.length) % filteredImages.length);
   };
 

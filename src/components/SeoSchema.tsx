@@ -13,37 +13,37 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
     document.documentElement.lang = lang;
 
     // 2. Dynamic Title & Meta Description based on Page & Language
-    let pageTitle = 'Prakash Physiotherapy Clinic | Dr. Abhay Prakash Tiwari | Bhimnagar, Supaul, Birpur, Nepal';
-    let metaDescription = 'Best Physiotherapy Clinic in Bhimnagar, Supaul, Birpur & Nepal border. Expert care for Back Pain, Sciatica, Paralysis, Slip Disc, Joint Pain, Frozen Shoulder by Dr. Abhay Prakash Tiwari (M.P.T Ortho New Delhi).';
+    let pageTitle = 'Prakash Physiotherapy Clinic & Hospital | Dr. Abhay Prakash Tiwari | Bhimnagar, Supaul, Birpur, Nepal';
+    let metaDescription = 'Leading Physiotherapy Hospital & Clinic in Supaul District, Bhimnagar, Birpur & Nepal border. Expert non-surgical care for Back Pain, Sciatica, Paralysis, Slip Disc, Joint Pain, Frozen Shoulder by Dr. Abhay Prakash Tiwari (M.P.T Ortho New Delhi). Call +91 9711700817.';
 
     if (currentPage === 'treatments') {
       pageTitle = lang === 'hi' 
-        ? 'मुख्य इलाज व फिजियोथेरेपी सेवाएं | प्रकाश फिजियोथेरेपी क्लिनिक भीमनगर' 
-        : 'Treatments & Services | Prakash Physiotherapy Clinic Bhimnagar Supaul';
+        ? 'मुख्य इलाज व सेवाएं | प्रकाश फिजियोथेरेपी क्लिनिक एवं अस्पताल भीमनगर सुपौल' 
+        : 'Treatments & Medical Services | Prakash Physiotherapy Clinic & Hospital Bhimnagar Supaul';
       metaDescription = lang === 'hi'
-        ? 'कमर दर्द, साइटिका, स्लिप डिस्क, लकवा (पैरालिसिस), सर्वाइकल व घुटने के दर्द का बिना ऑपरेशन वैज्ञानिक फिजियोथेरेपी इलाज।'
-        : 'Non-surgical physical therapy for back pain, sciatica, slip disc, paralysis stroke rehab, cervical spondylosis & knee joint arthritis in Bhimnagar.';
+        ? 'कमर दर्द, साइटिका, स्लिप डिस्क, लकवा (पैरालिसिस), सर्वाइकल व घुटने के दर्द का भीमनगर-बीरपुर के प्रमुख क्लिनिक में बिना ऑपरेशन इलाज।'
+        : 'Non-surgical physical therapy for back pain, sciatica, slip disc, paralysis stroke rehab, cervical spondylosis & knee joint arthritis in Bhimnagar, Birpur & Supaul.';
     } else if (currentPage === 'reviews') {
       pageTitle = lang === 'hi'
-        ? 'मरीजों के अनुभव व एफएक्यू (FAQ) | प्रकाश फिजियोथेरेपी क्लिनिक'
-        : 'Patient Reviews & FAQs | Prakash Physiotherapy Clinic Bhimnagar';
+        ? 'मरीजों के अनुभव व एफएक्यू (FAQ) | प्रकाश फिजियोथेरेपी क्लिनिक एवं अस्पताल'
+        : 'Patient Recovery Reviews & FAQs | Prakash Physiotherapy Hospital Bhimnagar';
       metaDescription = lang === 'hi'
-        ? 'संतुष्ट मरीजों की राय, गूगल रेटिंग (4.9★) एवं फिजियोथेरेपी इलाज से जुड़े सभी सामान्य सवालों के जवाब।'
-        : 'Verified patient recovery reviews, 4.9★ Google ratings & detailed FAQ answers for physiotherapy consultation.';
+        ? 'भीमनगर, बीरपुर, सुपौल व नेपाल बॉर्डर के संतुष्ट मरीजों की राय, गूगल रेटिंग (4.9★) एवं फिजियोथेरेपी अस्पताल परामर्श एफएक्यू।'
+        : 'Verified patient recovery reviews, 4.9★ Google ratings & detailed FAQ answers for physiotherapy hospital consultation in Supaul District.';
     } else if (currentPage === 'contact') {
       pageTitle = lang === 'hi'
-        ? 'क्लिनिक पता व संपर्क | प्रकाश फिजियोथेरेपी क्लिनिक भीमनगर बीरपुर'
-        : 'Contact Us & Appointment | Prakash Physiotherapy Clinic Bhimnagar Supaul';
+        ? 'अस्पताल पता व संपर्क | प्रकाश फिजियोथेरेपी क्लिनिक भीमनगर बीरपुर सुपौल'
+        : 'Clinic Address & Appointment | Prakash Physiotherapy Hospital Bhimnagar Supaul';
       metaDescription = lang === 'hi'
-        ? 'भंटाबारी रोड, भीमनगर (शैलेशपुर), बीरपुर, सुपौल। ओपीडी परामर्श एवं घर पर इलाज (Home Visit) हेतु कॉल करें: +91 9711700817।'
-        : 'Bhantabari Road, Bhimnagar, Birpur, Supaul. Contact +91 9711700817 for OPD appointment & 24/7 Home Visit emergency care.';
+        ? 'भंटाबारी रोड, भीमनगर (शैलेशपुर), बीरपुर, सुपौल जिला। ओपीडी परामर्श एवं 24 घंटे घर पर इलाज (Home Visit) हेतु कॉल करें: +91 9711700817।'
+        : 'Bhantabari Road, Bhimnagar, Birpur, Supaul. Contact +91 9711700817 for OPD appointment & 24/7 Home Visit emergency hospital care.';
     } else if (currentPage === 'seo-locations') {
       pageTitle = lang === 'hi'
-        ? '60+ सेवारत गांव व स्थानीय क्षेत्र | प्रकाश फिजियोथेरेपी क्लिनिक'
-        : 'Service Areas & 60+ Locations Directory | Prakash Physiotherapy Clinic';
+        ? 'सुपौल जिला व नेपाल बॉर्डर 60+ सेवारत क्षेत्र | प्रकाश फिजियोथेरेपी अस्पताल'
+        : '60+ Locations Directory | Prakash Physiotherapy Clinic & Hospital Supaul';
       metaDescription = lang === 'hi'
-        ? 'भीमनगर, बीरपुर, सुपौल, अररिया, नेपाल सीमा (सप्तरी/राजविराज) के 60+ गांवों हेतु ओपीडी एवं होम केयर फिजियोथेरेपी।'
-        : 'OPD and Home Visit physiotherapy coverage across 60+ villages in Supaul, Araria and Nepal border communities.';
+        ? 'भीमनगर, बीरपुर, सुपौल जिला, अररिया, नेपाल सीमा (सप्तरी/राजविराज) के 60+ गांवों हेतु ओपीडी एवं होम केयर फिजियोथेरेपी अस्पताल सेवाएं।'
+        : 'OPD and Home Visit physiotherapy coverage across 60+ villages in Supaul district, Araria and Nepal border communities.';
     }
 
     document.title = pageTitle;
@@ -81,17 +81,32 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       "bodyLocation": t.category === 'spine' ? 'Spine & Back' : t.category === 'neuro' ? 'Nervous System & Brain' : 'Joints & Muscles'
     }));
 
-    // Keywords string
-    const keywordsList = servingLocationsData.map(
-      (loc) => `Physiotherapy in ${loc.nameEn}, ${loc.nameHi} Physiotherapist`
-    ).join(', ');
+    // Local Search Target Keywords List
+    const baseKeywords = [
+      "Physiotherapy in Supaul District",
+      "Best Hospital in Bhimnagar",
+      "Best Clinic in Bhimnagar",
+      "Hospital near Birpur",
+      "Clinic near Birpur",
+      "Best Physiotherapist in Supaul",
+      "Physiotherapy Hospital Supaul",
+      "भीमनगर अस्पताल",
+      "भीमनगर क्लिनिक",
+      "बीरपुर अस्पताल",
+      "सुपौल जिला अस्पताल"
+    ];
+    const keywordsList = [
+      ...baseKeywords,
+      ...servingLocationsData.map((loc) => `Physiotherapy in ${loc.nameEn}, ${loc.nameHi} Physiotherapist`)
+    ].join(', ');
 
-    // MedicalClinic & Physician & LocalBusiness Schema
+    // MedicalClinic & Physician & LocalBusiness & Hospital Schema
     const clinicSchema = {
       "@context": "https://schema.org",
-      "@type": ["MedicalClinic", "Physician", "LocalBusiness"],
-      "name": "Prakash Physiotherapy Clinic - Dr. Abhay Prakash Tiwari",
-      "alternateName": "प्रकाश फिजियोथेरेपी क्लिनिक भीमनगर (सुपौल)",
+      "@type": ["MedicalClinic", "Hospital", "Physician", "LocalBusiness"],
+      "name": "Prakash Physiotherapy Clinic & Hospital - Dr. Abhay Prakash Tiwari",
+      "alternateName": "प्रकाश फिजियोथेरेपी क्लिनिक एवं अस्पताल भीमनगर (सुपौल)",
+      "description": "Premier physiotherapy clinic & non-surgical rehabilitation hospital serving Bhimnagar, Birpur, Supaul District, and Nepal border region. Expert treatment for back pain, sciatica, slip disc, paralysis, and knee pain by Dr. Abhay Prakash Tiwari (M.P.T. Orthopedics New Delhi).",
       "image": [
         "https://prakashphysioclinic.com/img/Prakash%20Physio%20Hero.webp",
         "https://prakashphysioclinic.com/img/Abhay%20Prakash.webp",
@@ -101,7 +116,12 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
       "@id": "https://prakashphysioclinic.com/#clinic",
       "url": "https://prakashphysioclinic.com",
       "telephone": ["+91-9711700817", "+91-9654874675", "+977-9819053588"],
-      "priceRange": "₹₹",
+      "priceRange": "₹₹ (Consultation ₹500, Session ₹300, Home Visit ₹700)",
+      "currenciesAccepted": "INR, NPR",
+      "paymentAccepted": "Cash, UPI, Google Pay, PhonePe",
+      "sameAs": [
+        "https://maps.app.goo.gl/9hx54wRLTqdXex5fA"
+      ],
       "medicalSpecialty": [
         "Physiotherapy",
         "Orthopedics",
