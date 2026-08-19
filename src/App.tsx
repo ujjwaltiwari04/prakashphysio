@@ -39,6 +39,30 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>('home');
   const [activeSection, setActiveSection] = useState<string>('home');
 
+  // URL Hash & Query Parameter Listener for QR codes & Direct Links
+  useEffect(() => {
+    const hash = window.location.hash.toLowerCase();
+    const search = window.location.search.toLowerCase();
+
+    if (hash.includes('review') || search.includes('review')) {
+      setCurrentPage('reviews');
+      setActiveSection('reviews');
+    } else if (hash.includes('treatment')) {
+      setCurrentPage('treatments');
+      setActiveSection('treatments');
+    } else if (hash.includes('contact')) {
+      setCurrentPage('contact');
+      setActiveSection('contact');
+    } else if (hash.includes('doctor')) {
+      setCurrentPage('home');
+      setActiveSection('doctor');
+      setTimeout(() => {
+        const elem = document.getElementById('doctor');
+        if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  }, []);
+
   // Modals
   const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState<boolean>(false);

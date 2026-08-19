@@ -65,6 +65,17 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
+  // Auto-open Review Modal if QR Code / Direct Link contains review parameters
+  useEffect(() => {
+    const hash = window.location.hash.toLowerCase();
+    const search = window.location.search.toLowerCase();
+    if (hash.includes('write') || hash.includes('review') || search.includes('review=true') || search.includes('write=true')) {
+      setTimeout(() => {
+        setIsModalOpen(true);
+      }, 400);
+    }
+  }, []);
+
   // Form State
   const [authorName, setAuthorName] = useState('');
   const [location, setLocation] = useState('');
