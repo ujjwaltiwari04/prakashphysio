@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Language, GoogleReview } from '../types';
 import { googleReviewsData } from '../data/clinicData';
 import { translations } from '../data/translations';
 import { Star, CheckCircle, ExternalLink, MapPin, PlusCircle, X, Send, ThumbsUp, Filter, ShieldCheck } from 'lucide-react';
+
+const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRRFGRtUtj8OhABI9pBDX2o64h8YF16i9aQoEjLyFY2KmQXvyy7Tld8u9MmyjfuefuPw/exec';
 
 interface GoogleReviewsProps {
   lang: Language;
@@ -34,6 +36,28 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
     return googleReviewsData;
   });
 
+  // Fetch persistent reviews stored in Google Sheet on load
+  useEffect(() => {
+    const fetchSheetReviews = async () => {
+      try {
+        const res = await fetch(GOOGLE_SHEETS_SCRIPT_URL);
+        if (!res.ok) return;
+        const sheetReviews = await res.json();
+        if (Array.isArray(sheetReviews) && sheetReviews.length > 0) {
+          setReviewsList((prev) => {
+            const existingIds = new Set(prev.map((r) => r.id));
+            const newFromSheet = sheetReviews.filter((r: GoogleReview) => r && r.id && !existingIds.has(r.id));
+            if (newFromSheet.length === 0) return prev;
+            return [...newFromSheet, ...prev];
+          });
+        }
+      } catch (err) {
+        console.warn('Google Sheet reviews fetch skipped/failed:', err);
+      }
+    };
+    fetchSheetReviews();
+  }, []);
+
   // Active Category Filter: 'all' | 'google' | 'patient'
   const [filterSource, setFilterSource] = useState<'all' | 'google' | 'patient'>('all');
 
@@ -55,7 +79,7 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
     return true;
   });
 
-  const handleSubmitReview = (e: React.FormEvent) => {
+  const handleSubmitReview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!authorName.trim() || !reviewText.trim()) return;
 
@@ -74,15 +98,36 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
       source: 'patient'
     };
 
-    // Update React State immediately in real-time
+    // 1. Update React State immediately in real-time
     const updated = [newReview, ...reviewsList];
     setReviewsList(updated);
 
-    // Save to LocalStorage
+    // 2. Save to LocalStorage for instant browser recovery
     const savedUserReviews = JSON.parse(localStorage.getItem('prakash_physio_user_reviews') || '[]');
     localStorage.setItem('prakash_physio_user_reviews', JSON.stringify([newReview, ...savedUserReviews]));
 
     setSubmittedSuccess(true);
+
+    // 3. Post to Google Sheet Web App for permanent cloud backup across all users
+    try {
+      await fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: newReview.id,
+          authorName: newReview.authorName,
+          rating: newReview.rating,
+          location: newReview.locationEn,
+          treatmentTag: newReview.treatmentTagEn,
+          reviewText: newReview.textEn
+        })
+      });
+    } catch (err) {
+      console.warn('Google Sheet review submit error:', err);
+    }
 
     // Reset Form
     setTimeout(() => {

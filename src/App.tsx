@@ -23,10 +23,10 @@ import { SeoSchema } from './components/SeoSchema';
 import { treatmentsData } from './data/clinicData';
 
 export default function App() {
-  // Language State: Default to 'hi' as recommended in prompt
+  // Language State: Default to 'en'
   const [lang, setLang] = useState<Language>(() => {
     const saved = localStorage.getItem('prakash_physio_lang');
-    return (saved === 'en' ? 'en' : 'hi') as Language;
+    return (saved === 'hi' ? 'hi' : 'en') as Language;
   });
 
   // Language Modal State: Show full screen language selection on first load unless already selected

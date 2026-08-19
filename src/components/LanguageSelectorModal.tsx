@@ -32,29 +32,6 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
         </p>
 
         <div className="space-y-4 mb-8">
-          {/* Hindi Option */}
-          <button
-            type="button"
-            onClick={() => onSelectLanguage('hi')}
-            className={`w-full p-4 rounded-xl border-2 text-left flex items-center justify-between transition-all ${
-              currentLanguage === 'hi'
-                ? 'border-[#0F4C81] bg-sky-50/70 ring-2 ring-[#0F4C81]/20'
-                : 'border-slate-200 hover:border-slate-300 bg-white'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div>
-                <div className="font-bold text-slate-900 text-lg">हिन्दी (Hindi)</div>
-                <div className="text-xs text-[#0F4C81] font-semibold">अनुशंसित (Recommended for Bihar & Nepal)</div>
-              </div>
-            </div>
-            {currentLanguage === 'hi' && (
-              <div className="w-7 h-7 bg-[#0F4C81] text-white rounded-full flex items-center justify-center">
-                <Check className="w-4 h-4" />
-              </div>
-            )}
-          </button>
-
           {/* English Option */}
           <button
             type="button"
@@ -68,10 +45,33 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
             <div className="flex items-center gap-3">
               <div>
                 <div className="font-bold text-slate-900 text-lg">English</div>
-                <div className="text-xs text-slate-500">English Language Version</div>
+                <div className="text-xs text-[#0F4C81] font-semibold">Default (English Version)</div>
               </div>
             </div>
             {currentLanguage === 'en' && (
+              <div className="w-7 h-7 bg-[#0F4C81] text-white rounded-full flex items-center justify-center">
+                <Check className="w-4 h-4" />
+              </div>
+            )}
+          </button>
+
+          {/* Hindi Option */}
+          <button
+            type="button"
+            onClick={() => onSelectLanguage('hi')}
+            className={`w-full p-4 rounded-xl border-2 text-left flex items-center justify-between transition-all ${
+              currentLanguage === 'hi'
+                ? 'border-[#0F4C81] bg-sky-50/70 ring-2 ring-[#0F4C81]/20'
+                : 'border-slate-200 hover:border-slate-300 bg-white'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div>
+                <div className="font-bold text-slate-900 text-lg">हिन्दी (Hindi)</div>
+                <div className="text-xs text-slate-500">हिन्दी भाषा संस्करण</div>
+              </div>
+            </div>
+            {currentLanguage === 'hi' && (
               <div className="w-7 h-7 bg-[#0F4C81] text-white rounded-full flex items-center justify-center">
                 <Check className="w-4 h-4" />
               </div>
