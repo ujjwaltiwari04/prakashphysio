@@ -13,8 +13,8 @@ export const SeoSchema: React.FC<SeoSchemaProps> = ({ lang, currentPage = 'home'
     document.documentElement.lang = lang;
 
     // 2. Dynamic Title & Meta Description based on Page & Language
-    let pageTitle = 'Prakash Physiotherapy Clinic & Hospital | Dr. Abhay Prakash Tiwari | Bhimnagar, Supaul, Birpur, Nepal';
-    let metaDescription = 'Leading Physiotherapy Hospital & Clinic in Supaul District, Bhimnagar, Birpur & Nepal border. Expert non-surgical care for Back Pain, Sciatica, Paralysis, Slip Disc, Joint Pain, Frozen Shoulder by Dr. Abhay Prakash Tiwari (M.P.T Ortho New Delhi). Call +91 9711700817.';
+    let pageTitle = 'Prakash Physiotherapy Clinic | Dr. Abhay Tiwari | Bhimnagar, Supaul';
+    let metaDescription = 'Top Physiotherapy Hospital & Clinic for Back Pain, Sciatica & Paralysis by Dr. Abhay Tiwari. Serving Birpur & Nepal border. Bhimnagar, Supaul.';
 
     if (currentPage === 'treatments') {
       pageTitle = lang === 'hi' 
