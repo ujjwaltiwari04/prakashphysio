@@ -300,11 +300,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                      {t.fieldLocation} *
+                      {t.fieldLocation}
                     </label>
                     <input
                       type="text"
-                      required
                       value={formData.villageLocation}
                       onChange={(e) => setFormData({ ...formData, villageLocation: e.target.value })}
                       placeholder={lang === 'hi' ? 'जैसे: भीमनगर / बीरपुर / राजविराज' : 'e.g., Bhimnagar / Birpur / Nepal'}
@@ -314,7 +313,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                      {t.fieldCondition} *
+                      {t.fieldCondition}
                     </label>
                     <select
                       value={formData.condition}
@@ -330,6 +329,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       <option value="फ्रोजन शोल्डर (Frozen Shoulder)">फ्रोजन शोल्डर (Frozen Shoulder)</option>
                       <option value="घुटने का दर्द (Knee Joint Pain)">घुटने का दर्द (Knee Joint Pain)</option>
                       <option value="ऑपरेशन के बाद रीहैब (Post Surgery)">ऑपरेशन के बाद रीहैब (Post Surgery)</option>
+                      <option value="होम विजिट सुविधा (Home Visit)">होम विजिट सुविधा (Home Visit)</option>
                       <option value="अन्य समस्या (Other)">अन्य समस्या (Other Problem)</option>
                     </select>
                   </div>
@@ -339,11 +339,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                      {t.fieldDate} *
+                      {t.fieldDate} ({lang === 'hi' ? 'वैकल्पिक' : 'Optional'})
                     </label>
                     <input
                       type="date"
-                      required
                       value={formData.preferredDate}
                       onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                       className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-[#0F4C81]"
@@ -352,7 +351,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                      {t.fieldTimeSlot} *
+                      {t.fieldTimeSlot}
                     </label>
                     <select
                       value={formData.preferredTimeSlot}
@@ -384,7 +383,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                   <button
                     type="submit"
-                    className="w-full sm:flex-1 py-4 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white font-bold rounded-xl text-base shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full sm:flex-1 py-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-extrabold rounded-xl text-base shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
                     <WhatsAppIcon className="w-5 h-5" />
                     <span>{t.submitFormBtn}</span>
@@ -392,9 +391,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
                   <a
                     href="tel:+919711700817"
-                    className="w-full sm:w-auto px-6 py-4 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white font-bold rounded-xl text-sm transition-all text-center flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-6 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm transition-all text-center flex items-center justify-center gap-2 shadow-md"
                   >
-                    <Phone className="w-4 h-4 text-white" />
+                    <Phone className="w-4 h-4 fill-current text-white" />
                     <span>{t.directCallBtn}</span>
                   </a>
                 </div>

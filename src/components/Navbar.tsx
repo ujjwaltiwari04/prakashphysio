@@ -21,55 +21,66 @@ export const Navbar: React.FC<NavbarProps> = ({
   const t = translations[lang];
 
   const navItems = [
-    { id: 'home', label: t.navHome },
-    { id: 'doctor', label: t.navAboutDoctor },
-    { id: 'treatments', label: t.navTreatments },
-    { id: 'reviews', label: t.navReviews },
-    { id: 'contact', label: t.navContact }
+    { id: 'home', href: '#home', label: t.navHome },
+    { id: 'treatments', href: '#treatments', label: t.navTreatments },
+    { id: 'doctor', href: '#doctor', label: t.navAboutDoctor },
+    { id: 'stories', href: '#stories', label: lang === 'hi' ? 'केस स्टडी' : 'Case Studies' },
+    { id: 'reviews', href: '#reviews', label: t.navReviews },
+    { id: 'faq', href: '#faq', label: t.navFAQ },
+    { id: 'locations', href: '#locations', label: lang === 'hi' ? '60+ सेवा क्षेत्र' : '60+ Areas' },
+    { id: 'contact', href: '#contact', label: t.navContact }
   ];
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
     onNavigate(id);
     setMobileMenuOpen(false);
   };
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all">
+    <nav aria-label="Main Navigation" className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <button
-            type="button"
-            onClick={() => handleNavClick('home')}
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, 'home')}
             className="flex items-center text-left focus:outline-hidden focus:ring-2 focus:ring-[#0F4C81] rounded-lg p-1"
           >
             <LogoSVG className="h-10 sm:h-12" showTagline={true} />
-          </button>
+          </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                type="button"
-                onClick={() => handleNavClick(item.id)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.id)}
+                className={`px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold transition-colors ${
                   activeSection === item.id
                     ? 'text-[#0F4C81] bg-sky-50 font-bold'
                     : 'text-slate-700 hover:text-[#0F4C81] hover:bg-slate-50'
                 }`}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
 
           {/* Desktop Action CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
+            <a
+              href="tel:+919711700817"
+              className="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white px-3.5 py-2.5 rounded-xl font-bold text-xs xl:text-sm transition-all shadow-sm active:scale-95"
+            >
+              <Phone className="w-4 h-4 fill-current" />
+              <span>{t.callNow}</span>
+            </a>
             <button
               type="button"
               onClick={onOpenAppointment}
-              className="inline-flex items-center gap-2 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white px-4 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-2 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white px-4 py-2.5 rounded-xl font-bold text-xs xl:text-sm transition-all shadow-md active:scale-95"
             >
               <Calendar className="w-4 h-4" />
               <span>{t.bookAppointment}</span>
@@ -78,10 +89,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href="tel:+919711700817"
+              className="bg-red-600 text-white text-xs font-bold px-2.5 py-2 rounded-lg flex items-center gap-1 shadow-2xs"
+            >
+              <Phone className="w-3.5 h-3.5 fill-current" />
+              <span>{lang === 'hi' ? 'कॉल' : 'Call'}</span>
+            </a>
+
             <button
               type="button"
               onClick={onOpenAppointment}
-              className="bg-[#0F4C81] text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1"
+              className="bg-[#0F4C81] text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1 shadow-2xs"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>{lang === 'hi' ? 'बुक करें' : 'Book'}</span>
@@ -102,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-1 shadow-lg animate-in slide-in-from-top-2 duration-150">
-          <div className="p-2 bg-sky-50 rounded-lg mb-3 text-xs text-[#0F4C81] font-semibold flex items-center justify-between">
+          <div className="p-2.5 bg-sky-50 rounded-lg mb-3 text-xs text-[#0F4C81] font-semibold flex items-center justify-between">
             <span>Dr. Abhay Prakash Tiwari (M.P.T Ortho)</span>
             <a href="tel:+919711700817" className="text-red-600 font-bold flex items-center gap-1">
               <Phone className="w-3.5 h-3.5" /> +91 9711700817
@@ -110,30 +129,37 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {navItems.map((item) => (
-            <button
+            <a
               key={item.id}
-              type="button"
-              onClick={() => handleNavClick(item.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.id)}
+              className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                 activeSection === item.id
                   ? 'text-[#0F4C81] bg-sky-50 font-bold border-l-4 border-[#0F4C81]'
                   : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               {item.label}
-            </button>
+            </a>
           ))}
 
-          <div className="pt-3">
+          <div className="pt-3 grid grid-cols-2 gap-2">
+            <a
+              href="tel:+919711700817"
+              className="py-3 bg-red-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 text-sm shadow-md"
+            >
+              <Phone className="w-4 h-4 fill-current" />
+              <span>{t.callNow}</span>
+            </a>
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAppointment();
               }}
-              className="w-full py-3.5 bg-[#0F4C81] text-white font-bold rounded-xl flex items-center justify-center gap-2 text-base shadow-md"
+              className="py-3 bg-[#0F4C81] text-white font-bold rounded-xl flex items-center justify-center gap-2 text-sm shadow-md"
             >
-              <Calendar className="w-5 h-5" />
+              <Calendar className="w-4 h-4" />
               <span>{t.bookAppointment}</span>
             </button>
           </div>

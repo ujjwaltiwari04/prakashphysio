@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+import { treatmentsData } from '../data/clinicData';
 import { LogoSVG } from './LogoSVG';
 import { Phone, MapPin, Clock } from 'lucide-react';
 
@@ -12,9 +13,14 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
   const t = translations[lang];
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    onNavigate(sectionId);
+  };
+
   return (
     <footer className="bg-slate-900 text-slate-300 pt-12 pb-24 lg:pb-12 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         
         {/* Main 4-column Footer */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -42,51 +48,64 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-300 transition-colors">
+                <a href="#home" onClick={(e) => handleLinkClick(e, 'home')} className="hover:text-sky-300 transition-colors">
                   • {t.navHome}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('doctor')} className="hover:text-sky-300 transition-colors">
-                  • {t.navAboutDoctor}
-                </button>
-              </li>
-              <li>
-                <button type="button" onClick={() => onNavigate('treatments')} className="hover:text-sky-300 transition-colors">
+                <a href="#treatments" onClick={(e) => handleLinkClick(e, 'treatments')} className="hover:text-sky-300 transition-colors">
                   • {t.navTreatments}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('reviews')} className="hover:text-sky-300 transition-colors">
+                <a href="#doctor" onClick={(e) => handleLinkClick(e, 'doctor')} className="hover:text-sky-300 transition-colors">
+                  • {t.navAboutDoctor}
+                </a>
+              </li>
+              <li>
+                <a href="#stories" onClick={(e) => handleLinkClick(e, 'stories')} className="hover:text-sky-300 transition-colors">
+                  • {t.navRecoveryStories}
+                </a>
+              </li>
+              <li>
+                <a href="#reviews" onClick={(e) => handleLinkClick(e, 'reviews')} className="hover:text-sky-300 transition-colors">
                   • {t.navReviews}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('contact')} className="hover:text-sky-300 transition-colors">
+                <a href="#faq" onClick={(e) => handleLinkClick(e, 'faq')} className="hover:text-sky-300 transition-colors">
+                  • {t.navFAQ}
+                </a>
+              </li>
+              <li>
+                <a href="#contact" onClick={(e) => handleLinkClick(e, 'contact')} className="hover:text-sky-300 transition-colors">
                   • {t.navContact}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('seo-locations')} className="hover:text-sky-300 transition-colors text-sky-300 font-bold">
+                <a href="#locations" onClick={(e) => handleLinkClick(e, 'locations')} className="hover:text-sky-300 transition-colors text-sky-300 font-bold">
                   • {lang === 'hi' ? '60+ सेवारत गांव व स्थान निर्देशिका' : '60+ Locations Directory'}
-                </button>
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Top Treatments */}
+          {/* Column 3: Top Treatments (Direct Crawlable SEO Pages) */}
           <div className="space-y-3">
             <h4 className="font-bold text-white text-sm uppercase tracking-wider font-poppins border-b border-slate-800 pb-2">
               {t.ourTreatments}
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400 font-medium">
-              <li>• {lang === 'hi' ? 'कमर दर्द व साइटिका इलाज' : 'Back Pain & Sciatica Care'}</li>
-              <li>• {lang === 'hi' ? 'स्लिप डिस्क बिना ऑपरेशन इलाज' : 'Non-Surgical Slip Disc Rehab'}</li>
-              <li>• {lang === 'hi' ? 'लकवा (Paralysis) व स्ट्रोक न्यूरो रीहैब' : 'Stroke & Paralysis Rehabilitation'}</li>
-              <li>• {lang === 'hi' ? 'गर्दन दर्द व सर्वाइकल' : 'Cervical Neck Pain Therapy'}</li>
-              <li>• {lang === 'hi' ? 'घुटने का दर्द व आर्थराइटिस' : 'Knee Arthritis & Joint Therapy'}</li>
-              <li>• {lang === 'hi' ? 'फ्रोजन शोल्डर (कंधा जाम)' : 'Frozen Shoulder Release'}</li>
-              <li>• {lang === 'hi' ? 'ड्राई नीडलिंग व कपिंग थेरेपी' : 'Dry Needling & Cupping Therapy'}</li>
+            <ul className="space-y-1.5 text-xs text-slate-400 font-medium">
+              {treatmentsData.map((tr) => (
+                <li key={tr.id}>
+                  <a
+                    href={`/treatments/${tr.slug}.html`}
+                    className="hover:text-sky-300 transition-colors block truncate"
+                  >
+                    • {lang === 'hi' ? tr.titleHi : tr.titleEn}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -113,6 +132,20 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
                 <Clock className="w-4 h-4 text-sky-400" />
                 <span>{t.opdTimings}</span>
               </p>
+
+              <div className="pt-2 border-t border-slate-800 space-y-1 text-[11px] text-slate-400">
+                <span className="text-sky-300 font-bold block">
+                  {lang === 'hi' ? 'प्रमुख स्थानीय सेवा पेज:' : 'Regional Service Hubs:'}
+                </span>
+                <div className="flex flex-wrap gap-x-2 gap-y-1">
+                  <a href="/locations/physiotherapy-in-bhimnagar.html" className="hover:text-white underline">Bhimnagar</a>
+                  <a href="/locations/physiotherapy-in-birpur.html" className="hover:text-white underline">Birpur</a>
+                  <a href="/locations/physiotherapy-in-supaul.html" className="hover:text-white underline">Supaul</a>
+                  <a href="/locations/physiotherapy-near-nepal-border-rajbiraj-saptari.html" className="hover:text-white underline">Rajbiraj / Nepal</a>
+                  <a href="/locations/physiotherapy-in-forbesganj-araria.html" className="hover:text-white underline">Forbesganj / Araria</a>
+                  <a href="/locations/physiotherapy-in-triveniganj-raghopur-simrahi.html" className="hover:text-white underline">Triveniganj & Raghopur</a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -120,7 +153,10 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
 
         {/* Copyright */}
         <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
-          <p>{t.copyrightText}</p>
+          <p>{t.copyrightText || '© 2026 Prakash Physiotherapy Clinic, Bhimnagar, Supaul. All rights reserved.'}</p>
+          <p className="text-[11px] text-slate-400">
+            Dr. Abhay Prakash Tiwari • M.P.T. (Ortho) New Delhi • +91 9711700817
+          </p>
         </div>
 
       </div>
