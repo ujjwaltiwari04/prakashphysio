@@ -321,16 +321,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
                       className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-[#0F4C81]"
                     >
-                      <option value="">{lang === 'hi' ? '-- समस्या चुनें --' : '-- Select Problem --'}</option>
-                      <option value="कमर दर्द (Back Pain)">कमर दर्द (Back Pain)</option>
-                      <option value="साइटिका (Sciatica)">साइटिका (Sciatica)</option>
-                      <option value="स्लिप डिस्क (Slip Disc)">स्लिप डिस्क (Slip Disc)</option>
-                      <option value="लकवा / स्ट्रोक (Paralysis)">लकवा / स्ट्रोक (Paralysis)</option>
-                      <option value="गर्दन दर्द (Neck Pain)">गर्दन दर्द (Neck Pain)</option>
-                      <option value="फ्रोजन शोल्डर (Frozen Shoulder)">फ्रोजन शोल्डर (Frozen Shoulder)</option>
-                      <option value="घुटने का दर्द (Knee Joint Pain)">घुटने का दर्द (Knee Joint Pain)</option>
-                      <option value="ऑपरेशन के बाद रीहैब (Post Surgery)">ऑपरेशन के बाद रीहैब (Post Surgery)</option>
-                      <option value="अन्य समस्या (Other)">अन्य समस्या (Other Problem)</option>
+                      <option value="">-- Select Problem --</option>
+                      <option value="Back Pain">Back Pain</option>
+                      <option value="Sciatica">Sciatica</option>
+                      <option value="Slip Disc">Slip Disc</option>
+                      <option value="Paralysis / Stroke">Paralysis / Stroke</option>
+                      <option value="Neck Pain">Neck Pain</option>
+                      <option value="Frozen Shoulder">Frozen Shoulder</option>
+                      <option value="Knee Joint Pain">Knee Joint Pain</option>
+                      <option value="Post Surgery Rehab">Post Surgery Rehab</option>
+                      <option value="Other Problem">Other Problem</option>
                     </select>
                   </div>
                 </div>

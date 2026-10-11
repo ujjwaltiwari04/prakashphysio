@@ -100,11 +100,11 @@ export const GoogleReviews: React.FC<GoogleReviewsProps> = ({ lang }) => {
       rating,
       textHi: reviewText.trim(),
       textEn: reviewText.trim(),
-      locationHi: location.trim() || 'भीमनगर (Bhimnagar)',
+      locationHi: location.trim() || 'Bhimnagar',
       locationEn: location.trim() || 'Bhimnagar',
-      treatmentTagHi: treatmentTag.trim() || 'फिजियोथेरेपी इलाज',
+      treatmentTagHi: treatmentTag.trim() || 'Physiotherapy Treatment',
       treatmentTagEn: treatmentTag.trim() || 'Physiotherapy Treatment',
-      timeAgoHi: 'अभी-अभी (Just Now)',
+      timeAgoHi: 'Just Now',
       timeAgoEn: 'Just Now',
       source: 'patient'
     };

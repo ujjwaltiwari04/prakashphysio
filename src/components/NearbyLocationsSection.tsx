@@ -254,7 +254,7 @@ export const NearbyLocationsSection: React.FC<NearbyLocationsSectionProps> = ({
           </div>
 
           <p className="text-slate-400 leading-relaxed text-[11px] font-mono">
-            {servingLocationsData.map((l) => `${l.nameEn} (${l.nameHi})`).join(' • ')}
+            {servingLocationsData.map((l) => `${l.nameEn} (${l.districtEn})`).join(' • ')}
           </p>
         </div>
 

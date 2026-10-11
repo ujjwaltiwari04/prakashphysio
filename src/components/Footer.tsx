@@ -42,34 +42,76 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button type="button" onClick={() => onNavigate('home')} className="hover:text-sky-300 transition-colors">
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('home');
+                  }}
+                  className="hover:text-sky-300 transition-colors"
+                >
                   • {t.navHome}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('doctor')} className="hover:text-sky-300 transition-colors">
+                <a
+                  href="#doctor"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('doctor');
+                  }}
+                  className="hover:text-sky-300 transition-colors"
+                >
                   • {t.navAboutDoctor}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('treatments')} className="hover:text-sky-300 transition-colors">
+                <a
+                  href="#treatments"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('treatments');
+                  }}
+                  className="hover:text-sky-300 transition-colors"
+                >
                   • {t.navTreatments}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('reviews')} className="hover:text-sky-300 transition-colors">
+                <a
+                  href="#reviews"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('reviews');
+                  }}
+                  className="hover:text-sky-300 transition-colors"
+                >
                   • {t.navReviews}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('contact')} className="hover:text-sky-300 transition-colors">
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('contact');
+                  }}
+                  className="hover:text-sky-300 transition-colors"
+                >
                   • {t.navContact}
-                </button>
+                </a>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('seo-locations')} className="hover:text-sky-300 transition-colors text-sky-300 font-bold">
-                  • {lang === 'hi' ? '60+ सेवारत गांव व स्थान निर्देशिका' : '60+ Locations Directory'}
-                </button>
+                <a
+                  href="#seo-locations"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('seo-locations');
+                  }}
+                  className="hover:text-sky-300 transition-colors text-sky-300 font-bold"
+                >
+                  • 60+ Locations Directory
+                </a>
               </li>
             </ul>
           </div>
@@ -80,13 +122,41 @@ export const Footer: React.FC<FooterProps> = ({ lang, onNavigate }) => {
               {t.ourTreatments}
             </h4>
             <ul className="space-y-2 text-xs text-slate-400 font-medium">
-              <li>• {lang === 'hi' ? 'कमर दर्द व साइटिका इलाज' : 'Back Pain & Sciatica Care'}</li>
-              <li>• {lang === 'hi' ? 'स्लिप डिस्क बिना ऑपरेशन इलाज' : 'Non-Surgical Slip Disc Rehab'}</li>
-              <li>• {lang === 'hi' ? 'लकवा (Paralysis) व स्ट्रोक न्यूरो रीहैब' : 'Stroke & Paralysis Rehabilitation'}</li>
-              <li>• {lang === 'hi' ? 'गर्दन दर्द व सर्वाइकल' : 'Cervical Neck Pain Therapy'}</li>
-              <li>• {lang === 'hi' ? 'घुटने का दर्द व आर्थराइटिस' : 'Knee Arthritis & Joint Therapy'}</li>
-              <li>• {lang === 'hi' ? 'फ्रोजन शोल्डर (कंधा जाम)' : 'Frozen Shoulder Release'}</li>
-              <li>• {lang === 'hi' ? 'ड्राई नीडलिंग व कपिंग थेरेपी' : 'Dry Needling & Cupping Therapy'}</li>
+              <li>
+                <a href="/treatments/back-pain-treatment-bhimnagar.html" className="hover:text-sky-300 transition-colors">
+                  • Back Pain & Sciatica Care
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/slip-disc-treatment-birpur.html" className="hover:text-sky-300 transition-colors">
+                  • Non-Surgical Slip Disc Rehab
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/paralysis-stroke-physiotherapy-bihar.html" className="hover:text-sky-300 transition-colors">
+                  • Stroke & Paralysis Rehabilitation
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/neck-pain-physiotherapy-supaul.html" className="hover:text-sky-300 transition-colors">
+                  • Cervical Neck Pain Therapy
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/joint-pain-treatment-supaul.html" className="hover:text-sky-300 transition-colors">
+                  • Knee Arthritis & Joint Therapy
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/frozen-shoulder-treatment-bhimnagar.html" className="hover:text-sky-300 transition-colors">
+                  • Frozen Shoulder Release
+                </a>
+              </li>
+              <li>
+                <a href="/treatments/dry-needling-therapy-bhimnagar.html" className="hover:text-sky-300 transition-colors">
+                  • Dry Needling & Cupping Therapy
+                </a>
+              </li>
             </ul>
           </div>
 

@@ -213,7 +213,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     {lang === 'hi' ? 'प्रथम विजिट: ' : 'First Visit: '}
                     <strong className="text-[#0F4C81] font-extrabold text-sm">₹500</strong>
                     {lang === 'hi' ? ' | आगे: ' : ' | Later: '}
-                    <strong className="text-[#0F4C81] font-extrabold text-sm">₹300/सेशन</strong>
+                    <strong className="text-[#0F4C81] font-extrabold text-sm">₹300/session</strong>
                   </span>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </span>
                   <span className="text-xs text-slate-700 font-semibold">
                     {lang === 'hi' ? 'शुल्क: ' : 'Charge: '}
-                    <strong className="text-[#0F4C81] font-extrabold text-sm">₹700 / सेशन</strong>
+                    <strong className="text-[#0F4C81] font-extrabold text-sm">₹700 / session</strong>
                   </span>
                 </div>
               </div>

@@ -20,6 +20,11 @@ export const AboutDoctor: React.FC<AboutDoctorProps> = ({ lang, onOpenAppointmen
       captionEn: "Dr. Abhay Prakash Tiwari (M.P.T. Orthopedics New Delhi) - Senior Physiotherapist"
     },
     {
+      url: "/img/award2026.webp",
+      captionHi: "डॉ. अभय प्रकाश तिवारी - एक्सीलेंस इन फिजियो प्रैक्टिस अवार्ड 2026 (Physio Helping Hands)",
+      captionEn: "Dr. Abhay Prakash Tiwari - Excellence in Physio Practice Award 2026 (Physio Helping Hands)"
+    },
+    {
       url: "/img/awards.webp",
       captionHi: "डॉ. अभय प्रकाश तिवारी - चिकित्सा उत्कृष्ट सम्मान एवं पुरस्कार प्रमाणपत्र",
       captionEn: "Dr. Abhay Prakash Tiwari - Excellence Award & Certificate of Honor"

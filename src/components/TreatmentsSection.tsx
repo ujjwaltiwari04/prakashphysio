@@ -118,22 +118,33 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({
               <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <h3 className="font-bold text-slate-900 text-base sm:text-lg font-poppins leading-snug group-hover:text-[#0F4C81] transition-colors">
-                    {lang === 'hi' ? treatment.titleHi : treatment.titleEn}
+                    <a
+                      href={`/treatments/${treatment.slug}.html`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onSelectTreatment(treatment);
+                      }}
+                    >
+                      {treatment.titleEn}
+                    </a>
                   </h3>
                   <p className="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed">
-                    {lang === 'hi' ? treatment.shortDescHi : treatment.shortDescEn}
+                    {treatment.shortDescEn}
                   </p>
                 </div>
 
                 {/* Learn More Button */}
-                <button
-                  type="button"
-                  onClick={() => onSelectTreatment(treatment)}
+                <a
+                  href={`/treatments/${treatment.slug}.html`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelectTreatment(treatment);
+                  }}
                   className="w-full mt-auto pt-3 border-t border-slate-100 flex items-center justify-between text-[#0F4C81] font-bold text-xs sm:text-sm hover:text-[#0c3e6a] transition-colors group/btn"
                 >
                   <span>{t.learnMoreBtn}</span>
                   <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </div>
           ))}

@@ -21,11 +21,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   const t = translations[lang];
 
   const navItems = [
-    { id: 'home', label: t.navHome },
-    { id: 'doctor', label: t.navAboutDoctor },
-    { id: 'treatments', label: t.navTreatments },
-    { id: 'reviews', label: t.navReviews },
-    { id: 'contact', label: t.navContact }
+    { id: 'home', label: t.navHome, href: '/' },
+    { id: 'doctor', label: t.navAboutDoctor, href: '#doctor' },
+    { id: 'treatments', label: t.navTreatments, href: '#treatments' },
+    { id: 'reviews', label: t.navReviews, href: '#reviews' },
+    { id: 'contact', label: t.navContact, href: '#contact' }
   ];
 
   const handleNavClick = (id: string) => {
@@ -38,21 +38,27 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <button
-            type="button"
-            onClick={() => handleNavClick('home')}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
             className="flex items-center text-left focus:outline-hidden focus:ring-2 focus:ring-[#0F4C81] rounded-lg p-1"
           >
             <LogoSVG className="h-10 sm:h-12" showTagline={true} />
-          </button>
+          </a>
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                type="button"
-                onClick={() => handleNavClick(item.id)}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.id);
+                }}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   activeSection === item.id
                     ? 'text-[#0F4C81] bg-sky-50 font-bold'
@@ -60,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
 
@@ -84,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="bg-[#0F4C81] text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1"
             >
               <Calendar className="w-3.5 h-3.5" />
-              <span>{lang === 'hi' ? 'बुक करें' : 'Book'}</span>
+              <span>Book</span>
             </button>
 
             <button
@@ -110,18 +116,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {navItems.map((item) => (
-            <button
+            <a
               key={item.id}
-              type="button"
-              onClick={() => handleNavClick(item.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+              href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.id);
+              }}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                 activeSection === item.id
                   ? 'text-[#0F4C81] bg-sky-50 font-bold border-l-4 border-[#0F4C81]'
                   : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               {item.label}
-            </button>
+            </a>
           ))}
 
           <div className="pt-3">

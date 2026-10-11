@@ -2,15 +2,13 @@ import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { WhatsAppIcon } from './WhatsAppIcon';
-import { Phone, Clock, MapPin, Globe } from 'lucide-react';
+import { Phone, Clock, MapPin } from 'lucide-react';
 
 interface TopBarProps {
   lang: Language;
-  onLanguageChange: (lang: Language) => void;
-  onOpenLanguageModal: () => void;
 }
 
-export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLanguageModal }) => {
+export const TopBar: React.FC<TopBarProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
@@ -21,7 +19,7 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
           <div className="flex items-center gap-1 min-w-0">
             <MapPin className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
             <span className="font-medium text-xs">
-              <span className="sm:hidden">{lang === 'hi' ? 'भंटाबारी रोड, भीमनगर, बीरपुर' : 'Bhantabari Road, Bhimnagar, Birpur'}</span>
+              <span className="sm:hidden">Bhantabari Road, Bhimnagar, Birpur</span>
               <span className="hidden sm:inline">{t.locationText}</span>
             </span>
           </div>
@@ -31,7 +29,7 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
           </div>
         </div>
 
-        {/* Right: Phone, WhatsApp & Language Switcher */}
+        {/* Right: Phone & WhatsApp (Original Aesthetic, English Only) */}
         <div className="flex items-center gap-2 sm:gap-3 ml-auto">
           {/* Emergency Badge */}
           <span className="hidden lg:inline-block bg-red-600/90 text-white font-bold px-2 py-0.5 rounded-sm border border-red-400/40 text-[11px]">
@@ -59,20 +57,8 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
             <WhatsAppIcon className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
-
-          {/* Language Switcher */}
-          <button
-            type="button"
-            onClick={onOpenLanguageModal}
-            className="flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white px-2 py-1 rounded-md text-xs font-semibold border border-white/20 transition-colors"
-            title="Change Language / भाषा बदलें"
-          >
-            <Globe className="w-3.5 h-3.5 text-sky-200" />
-            <span>{lang === 'hi' ? 'हिन्दी' : 'EN'}</span>
-          </button>
         </div>
       </div>
     </div>
   );
 };
-

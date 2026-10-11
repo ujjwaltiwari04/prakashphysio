@@ -56,11 +56,15 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="p-5 pt-0 text-slate-700 text-sm sm:text-base leading-relaxed border-t border-slate-200/60 bg-white">
-                    {lang === 'hi' ? faq.answerHi : faq.answerEn}
-                  </div>
-                )}
+                <div
+                  className={
+                    isOpen
+                      ? 'p-5 pt-0 text-slate-700 text-sm sm:text-base leading-relaxed border-t border-slate-200/60 bg-white block'
+                      : 'hidden'
+                  }
+                >
+                  {faq.answerEn}
+                </div>
               </div>
             );
           })}
