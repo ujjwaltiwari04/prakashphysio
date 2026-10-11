@@ -2,151 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Apex Domain: prakashphysio.in -->
   <url>
     <loc>https://prakashphysio.in/</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://prakashphysio.in/?lang=hi" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://prakashphysio.in/?lang=en" />
+    
+    <!-- Multi-language alternates -->
+    <xhtml:link rel="alternate" hreflang="hi" href="https://prakashphysio.in/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://prakashphysio.in/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://prakashphysio.in/" />
+
+    <!-- Google Image SEO Indexing -->
     <image:image>
       <image:loc>https://prakashphysio.in/img/Abhay%20Prakash.webp</image:loc>
-      <image:title>Dr. Abhay Prakash Tiwari - M.P.T. Orthopedics Physiotherapist in Bhimnagar Supaul</image:title>
+      <image:title>Dr. Abhay Prakash Tiwari - M.P.T. Orthopedics Physiotherapist</image:title>
+      <image:caption>Senior Physiotherapy Specialist at Prakash Physiotherapy Clinic, Bhimnagar, Supaul</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://prakashphysio.in/img/Prakash%20Physio%20Hero.webp</image:loc>
-      <image:title>Prakash Physiotherapy Clinic Bhimnagar Birpur Supaul</image:title>
+      <image:title>Prakash Physiotherapy Clinic Facilities</image:title>
+      <image:caption>Modern physiotherapy treatment beds and rehabilitation equipment in Bhimnagar</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysio.in/img/Therapy%20Session%201.webp</image:loc>
+      <image:title>Manual Spine &amp; Joint Decompression Session</image:title>
+      <image:caption>Dr. Abhay Prakash Tiwari performing manual therapy for back pain and sciatica</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://prakashphysio.in/img/electrotherapy.webp</image:loc>
+      <image:title>Advanced Electrotherapy Equipment</image:title>
+      <image:caption>Electrical muscle stimulation and IFT treatment for paralysis and nerve pain</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://prakashphysio.in/img/clinic%20photo.webp</image:loc>
-      <image:title>Prakash Physiotherapy Clinic Exterior Signboard Bhimnagar</image:title>
+      <image:title>Prakash Physiotherapy Clinic Exterior Signboard</image:title>
+      <image:caption>Clinic entrance on Bhantabari Road, Bhimnagar, Birpur, Supaul, Bihar</image:caption>
     </image:image>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/back-pain-treatment-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/sciatica-treatment-supaul.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/slip-disc-treatment-birpur.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/paralysis-stroke-physiotherapy-bihar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/neck-pain-physiotherapy-supaul.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/joint-pain-treatment-supaul.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/frozen-shoulder-treatment-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/knee-replacement-rehabilitation.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/bells-palsy-facial-physiotherapy.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/sports-injury-physiotherapy-bihar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/dry-needling-therapy-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/treatments/cupping-therapy-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-in-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-in-birpur.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-in-supaul.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-near-nepal-border-rajbiraj-saptari.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-in-forbesganj-araria.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/locations/physiotherapy-in-triveniganj-raghopur-simrahi.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/blog/back-pain-relief-physiotherapy-bhimnagar.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/blog/sciatica-treatment-without-surgery.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://prakashphysio.in/blog/stroke-paralysis-physiotherapy-recovery.html</loc>
-    <lastmod>2026-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>

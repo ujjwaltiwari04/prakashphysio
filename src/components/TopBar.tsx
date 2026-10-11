@@ -41,52 +41,35 @@ export const TopBar: React.FC<TopBarProps> = ({ lang, onLanguageChange, onOpenLa
           {/* Direct Call Button */}
           <a
             href="tel:+919711700817"
-            className="flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 px-2.5 py-1 rounded-md font-extrabold transition-all shadow-xs text-xs"
+            className="flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white px-2.5 py-1 rounded-md font-bold transition-all shadow-xs text-xs"
             title={t.callNow}
           >
             <Phone className="w-3.5 h-3.5 fill-current" />
-            <span>+91 9711700817</span>
+            <span>{t.callNow}</span>
           </a>
 
           {/* WhatsApp Button */}
           <a
-            href="https://wa.me/919711700817?text=नमस्ते%20डॉ.%20अभय%20प्रकाश%20तिवारी,%20मुझे%20फिजियोथेरेपी%20परामर्श%20लेना%20है।%20(Hello%20Dr.%20Tiwari,%20I%20need%20physiotherapy%20consultation)"
+            href="https://wa.me/919711700817?text=Hello%20Dr.%20Abhay%20Prakash%20Tiwari,%20I%20want%20to%20book%20a%20physiotherapy%20consultation."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white px-2.5 py-1 rounded-md font-extrabold transition-all shadow-xs text-xs"
+            className="flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white px-2.5 py-1 rounded-md font-bold transition-all shadow-xs text-xs"
             title={t.whatsappChat}
           >
             <WhatsAppIcon className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 
-          {/* Direct 1-Tap Bilingual Language Switcher (No Popup Friction) */}
-          <div className="flex items-center bg-slate-900/60 p-0.5 rounded-lg border border-white/20">
-            <button
-              type="button"
-              onClick={() => onLanguageChange('hi')}
-              className={`px-2 py-0.5 rounded-md text-[11px] font-bold transition-all ${
-                lang === 'hi'
-                  ? 'bg-white text-[#0F4C81] shadow-2xs'
-                  : 'text-sky-100 hover:text-white'
-              }`}
-              title="हिन्दी में देखें"
-            >
-              हिन्दी
-            </button>
-            <button
-              type="button"
-              onClick={() => onLanguageChange('en')}
-              className={`px-2 py-0.5 rounded-md text-[11px] font-bold transition-all ${
-                lang === 'en'
-                  ? 'bg-white text-[#0F4C81] shadow-2xs'
-                  : 'text-sky-100 hover:text-white'
-              }`}
-              title="Switch to English"
-            >
-              EN
-            </button>
-          </div>
+          {/* Language Switcher */}
+          <button
+            type="button"
+            onClick={onOpenLanguageModal}
+            className="flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white px-2 py-1 rounded-md text-xs font-semibold border border-white/20 transition-colors"
+            title="Change Language / भाषा बदलें"
+          >
+            <Globe className="w-3.5 h-3.5 text-sky-200" />
+            <span>{lang === 'hi' ? 'हिन्दी' : 'EN'}</span>
+          </button>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ interface FAQSectionProps {
 }
 
 export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
-  const [openId, setOpenId] = useState<string | null>('faq-pricing-homevisit');
+  const [openId, setOpenId] = useState<string | null>(null);
   const t = translations[lang];
 
   const toggleFAQ = (id: string) => {
@@ -45,25 +45,22 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ lang }) => {
               >
                 <button
                   type="button"
-                  aria-expanded={isOpen}
                   onClick={() => toggleFAQ(faq.id)}
                   className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-hidden hover:bg-sky-50/50 transition-colors"
                 >
-                  <h3 className="font-bold text-slate-900 text-base sm:text-lg font-poppins">
+                  <span className="font-bold text-slate-900 text-base sm:text-lg font-poppins">
                     {lang === 'hi' ? faq.questionHi : faq.questionEn}
-                  </h3>
+                  </span>
                   <div className="w-8 h-8 rounded-full bg-white text-[#0F4C81] border border-slate-200 flex items-center justify-center flex-shrink-0 shadow-2xs">
                     {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                   </div>
                 </button>
 
-                <div
-                  className={`${
-                    isOpen ? 'block' : 'hidden'
-                  } p-5 pt-3 text-slate-700 text-sm sm:text-base leading-relaxed border-t border-slate-200/60 bg-white`}
-                >
-                  {lang === 'hi' ? faq.answerHi : faq.answerEn}
-                </div>
+                {isOpen && (
+                  <div className="p-5 pt-0 text-slate-700 text-sm sm:text-base leading-relaxed border-t border-slate-200/60 bg-white">
+                    {lang === 'hi' ? faq.answerHi : faq.answerEn}
+                  </div>
+                )}
               </div>
             );
           })}

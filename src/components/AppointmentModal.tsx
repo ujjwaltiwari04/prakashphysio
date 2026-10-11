@@ -62,18 +62,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       `*Visit Type:* ${visitTypeStr}\n` +
       `*Patient Name:* ${formData.patientName}\n` +
       `*Phone:* ${formData.phone}\n` +
-      `*Village/Location:* ${formData.villageLocation || 'Bhimnagar / Nearby'}\n` +
-      `*Problem:* ${formData.condition || 'General Physiotherapy Consultation'}\n` +
-      `*Date:* ${formData.preferredDate || 'Today / Earliest Slot'}\n` +
+      `*Village/Location:* ${formData.villageLocation}\n` +
+      `*Problem:* ${formData.condition}\n` +
+      `*Date:* ${formData.preferredDate}\n` +
       `*Time Slot:* ${formData.preferredTimeSlot}`;
-
-    try {
-      const existing = JSON.parse(localStorage.getItem('prakash_physio_leads') || '[]');
-      localStorage.setItem(
-        'prakash_physio_leads',
-        JSON.stringify([{ ...formData, consultType, time: new Date().toISOString() }, ...existing])
-      );
-    } catch (_) {}
 
     const whatsappUrl = `https://wa.me/919711700817?text=${encodeURIComponent(textMessage)}`;
     window.open(whatsappUrl, '_blank');
@@ -87,7 +79,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         {/* Header */}
         <div className="bg-[#0F4C81] text-white p-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-amber-300" />
+            <Calendar className="w-5 h-5 text-white" />
             <h3 className="font-bold text-base font-poppins">{t.formTitle}</h3>
           </div>
 
@@ -105,7 +97,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         <div className="p-6 overflow-y-auto space-y-4">
           {submitted ? (
             <div className="text-center py-8 space-y-4">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
+              <div className="w-14 h-14 bg-sky-100 text-[#0F4C81] rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold text-slate-900 font-poppins">
@@ -113,25 +105,19 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </h4>
               <p className="text-sm text-slate-600 max-w-xs mx-auto">
                 {lang === 'hi'
-                  ? 'आपका अपॉइंटमेंट मैसेज तैयार कर दिया गया है। व्हाट्सएप पर Send दबाएं या सीधे नीचे कॉल करें।'
-                  : 'Your details have been prefilled. Click Send on WhatsApp or call us directly below.'}
+                  ? 'आपका अपॉइंटमेंट मैसेज तैयार कर दिया गया है। व्हाट्सएप पर भेजें पर क्लिक करें।'
+                  : 'Your details have been prefilled. Click send on WhatsApp.'}
               </p>
-              <a
-                href="tel:+919711700817"
-                className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm block"
-              >
-                {t.directCallBtn} (+91 9711700817)
-              </a>
               <button
                 type="button"
                 onClick={onClose}
-                className="w-full py-2.5 bg-slate-100 text-slate-700 font-bold rounded-xl text-xs"
+                className="w-full py-3 bg-[#0F4C81] text-white font-bold rounded-xl text-sm"
               >
                 {lang === 'hi' ? 'बंद करें' : 'Close'}
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3.5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               
               {/* Consultation Type Selector */}
               <div>
@@ -175,74 +161,73 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    {t.fieldName} *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.patientName}
-                    onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
-                    placeholder={lang === 'hi' ? 'जैसे: रामप्रसाद यादव' : 'e.g., Ramprasad Yadav'}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    {t.fieldPhone} *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder={lang === 'hi' ? 'मोबाइल नंबर' : 'Phone Number'}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  {t.fieldName} *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.patientName}
+                  onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
+                  placeholder={lang === 'hi' ? 'जैसे: रामप्रसाद यादव' : 'e.g., Ramprasad Yadav'}
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    {t.fieldCondition}
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.condition}
-                    onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
-                    placeholder={lang === 'hi' ? 'कमर दर्द / साइटिका / लकवा...' : 'Back pain / Sciatica / Paralysis...'}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  {t.fieldPhone} *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder={lang === 'hi' ? 'मोबाइल नंबर' : 'Phone Number'}
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                />
+              </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    {t.fieldLocation}
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.villageLocation}
-                    onChange={(e) => setFormData({ ...formData, villageLocation: e.target.value })}
-                    placeholder={lang === 'hi' ? 'गांव / शहर (जैसे: भीमनगर)' : 'Village / Town (e.g. Bhimnagar)'}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  {t.fieldLocation} *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.villageLocation}
+                  onChange={(e) => setFormData({ ...formData, villageLocation: e.target.value })}
+                  placeholder={lang === 'hi' ? 'गांव / शहर (जैसे: भीमनगर)' : 'Village / Town (e.g. Bhimnagar)'}
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  {t.fieldCondition} *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.condition}
+                  onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
+                  placeholder={lang === 'hi' ? 'कमर दर्द / साइटिका / लकवा...' : 'Back pain / Sciatica / Paralysis...'}
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    {t.fieldDate} ({lang === 'hi' ? 'वैकल्पिक' : 'Optional'})
+                    {t.fieldDate} *
                   </label>
                   <input
                     type="date"
+                    required
                     value={formData.preferredDate}
                     onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
                   />
                 </div>
 
@@ -253,11 +238,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   <select
                     value={formData.preferredTimeSlot}
                     onChange={(e) => setFormData({ ...formData, preferredTimeSlot: e.target.value })}
-                    className="w-full px-2 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
+                    className="w-full px-2 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-[#0F4C81]"
                   >
-                    <option value="Morning (8:00 AM - 12:00 PM)">{t.slotMorning}</option>
-                    <option value="Afternoon (12:00 PM - 4:00 PM)">{t.slotAfternoon}</option>
-                    <option value="Evening (4:00 PM - 8:00 PM)">{t.slotEvening}</option>
+                    <option value="Morning">{t.slotMorning}</option>
+                    <option value="Afternoon">{t.slotAfternoon}</option>
+                    <option value="Evening">{t.slotEvening}</option>
                   </select>
                 </div>
               </div>
@@ -265,18 +250,17 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               <div className="pt-2 space-y-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-extrabold rounded-xl text-sm shadow-md flex items-center justify-center gap-2 transition-all active:scale-95"
+                  className="w-full py-3.5 bg-[#0F4C81] hover:bg-[#0c3e6a] text-white font-bold rounded-xl text-sm shadow-md flex items-center justify-center gap-2"
                 >
-                  <WhatsAppIcon className="w-5 h-5" />
+                  <WhatsAppIcon className="w-4 h-4" />
                   <span>{t.submitFormBtn}</span>
                 </button>
 
                 <a
                   href="tel:+919711700817"
-                  className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs text-center flex items-center justify-center gap-1.5 shadow-sm"
+                  className="w-full py-3 bg-[#0F4C81] text-white font-bold rounded-xl text-xs text-center block"
                 >
-                  <Phone className="w-4 h-4 fill-current" />
-                  <span>{t.directCallBtn} (+91 9711700817)</span>
+                  {t.directCallBtn} (+91 9711700817)
                 </a>
               </div>
 

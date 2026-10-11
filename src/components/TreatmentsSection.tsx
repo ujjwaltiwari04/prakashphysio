@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Language, Treatment } from '../types';
 import { treatmentsData } from '../data/clinicData';
 import { translations } from '../data/translations';
-import { WhatsAppIcon } from './WhatsAppIcon';
-import { Search, ChevronRight, Phone } from 'lucide-react';
+import { Search, ChevronRight, Activity, Zap, ShieldAlert, HeartPulse, Sparkles } from 'lucide-react';
 
 interface TreatmentsSectionProps {
   lang: Language;
@@ -52,7 +51,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-bold text-[#0F4C81] bg-sky-100 px-3 py-1 rounded-full uppercase tracking-wider">
-            {lang === 'hi' ? 'चिकित्सा सेवाएं (Specialized Treatments)' : 'Specialized Physiotherapy Services'}
+            {lang === 'hi' ? 'चिकित्सा सेवाएं' : 'Specialized Services'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-poppins">
             {t.treatmentsTitle}
@@ -97,77 +96,47 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({
 
         {/* Treatment Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTreatments.map((treatment) => {
-            const waText = encodeURIComponent(
-              `नमस्ते डॉ. अभय प्रकाश तिवारी, मुझे "${treatment.titleHi} (${treatment.titleEn})" के इलाज के लिए परामर्श लेना है।`
-            );
-            return (
-              <article
-                key={treatment.id}
-                className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col group hover:-translate-y-1"
-              >
-                {/* Image */}
-                <div
+          {filteredTreatments.map((treatment) => (
+            <div
+              key={treatment.id}
+              className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col group hover:-translate-y-1"
+            >
+              {/* Image */}
+              <div className="relative h-48 bg-slate-100 overflow-hidden">
+                <img
+                  src={treatment.image}
+                  alt={lang === 'hi' ? treatment.titleHi : treatment.titleEn}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs text-sky-200 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                  {lang === 'hi' ? treatment.titleHi.split('(')[0] : treatment.titleEn.split('&')[0]}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <h3 className="font-bold text-slate-900 text-base sm:text-lg font-poppins leading-snug group-hover:text-[#0F4C81] transition-colors">
+                    {lang === 'hi' ? treatment.titleHi : treatment.titleEn}
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed">
+                    {lang === 'hi' ? treatment.shortDescHi : treatment.shortDescEn}
+                  </p>
+                </div>
+
+                {/* Learn More Button */}
+                <button
+                  type="button"
                   onClick={() => onSelectTreatment(treatment)}
-                  className="relative h-48 bg-slate-100 overflow-hidden cursor-pointer"
+                  className="w-full mt-auto pt-3 border-t border-slate-100 flex items-center justify-between text-[#0F4C81] font-bold text-xs sm:text-sm hover:text-[#0c3e6a] transition-colors group/btn"
                 >
-                  <img
-                    src={treatment.image}
-                    alt={`${treatment.titleEn} - ${treatment.titleHi} at Prakash Physiotherapy Clinic Bhimnagar`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-xs text-sky-200 text-[11px] font-bold px-2.5 py-1 rounded-md">
-                    {lang === 'hi' ? treatment.titleHi.split('(')[0] : treatment.titleEn.split('&')[0]}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-slate-900 text-base sm:text-lg font-poppins leading-snug group-hover:text-[#0F4C81] transition-colors">
-                      <a
-                        href={`/treatments/${treatment.slug}.html`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onSelectTreatment(treatment);
-                        }}
-                        className="hover:underline"
-                      >
-                        {lang === 'hi' ? treatment.titleHi : treatment.titleEn}
-                      </a>
-                    </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed">
-                      {lang === 'hi' ? treatment.shortDescHi : treatment.shortDescEn}
-                    </p>
-                  </div>
-
-                  {/* Action Buttons: Details + Direct WhatsApp */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => onSelectTreatment(treatment)}
-                      className="flex-1 py-2 px-3 bg-sky-50 hover:bg-[#0F4C81] text-[#0F4C81] hover:text-white rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-1"
-                    >
-                      <span>{lang === 'hi' ? 'लक्षण व इलाज' : 'View Details'}</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-
-                    <a
-                      href={`https://wa.me/919711700817?text=${waText}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="py-2 px-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-1 shadow-2xs"
-                      title={lang === 'hi' ? 'व्हाट्सएप पर पूछें' : 'Ask on WhatsApp'}
-                    >
-                      <WhatsAppIcon className="w-3.5 h-3.5" />
-                      <span>{lang === 'hi' ? 'बुक करें' : 'Book'}</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+                  <span>{t.learnMoreBtn}</span>
+                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         {filteredTreatments.length === 0 && (

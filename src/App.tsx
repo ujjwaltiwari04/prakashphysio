@@ -4,116 +4,93 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Language, Treatment, BlogPost } from './types';
+import { Language, Treatment } from './types';
 import { LanguageSelectorModal } from './components/LanguageSelectorModal';
 import { TopBar } from './components/TopBar';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { TrustStrip } from './components/TrustStrip';
-import { TreatmentsSection } from './components/TreatmentsSection';
 import { AboutDoctor } from './components/AboutDoctor';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { RecoveryStories } from './components/RecoveryStories';
-import { GoogleReviews } from './components/GoogleReviews';
-import { PhotoGallery } from './components/PhotoGallery';
-import { FAQSection } from './components/FAQSection';
-import { BlogSection } from './components/BlogSection';
-import { BlogDetailModal } from './components/BlogDetailModal';
-import { ContactSection } from './components/ContactSection';
+import { TreatmentsSection } from './components/TreatmentsSection';
+import { TreatmentDetailModal } from './components/TreatmentDetailModal';
 import { NearbyLocationsSection } from './components/NearbyLocationsSection';
-import { SignboardBanner } from './components/SignboardBanner';
+import { GoogleReviews } from './components/GoogleReviews';
+import { FAQSection } from './components/FAQSection';
+import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { StickyMobileBar } from './components/StickyMobileBar';
 import { AppointmentModal } from './components/AppointmentModal';
-import { TreatmentDetailModal } from './components/TreatmentDetailModal';
 import { SeoSchema } from './components/SeoSchema';
-import { treatmentsData, blogPostsData } from './data/clinicData';
+import { treatmentsData } from './data/clinicData';
 
 export default function App() {
-  // Language State: Support ?lang=hi|en query param or saved preference, default to 'hi' for local Bihar/Nepal patients
+  // Language State: Default to 'en'
   const [lang, setLang] = useState<Language>(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlLang = params.get('lang');
-    if (urlLang === 'en' || urlLang === 'hi') return urlLang;
     const saved = localStorage.getItem('prakash_physio_lang');
-    if (saved === 'en' || saved === 'hi') return saved;
-    return 'hi';
+    return (saved === 'hi' ? 'hi' : 'en') as Language;
   });
 
-  // Never block first load with an intrusive popup (critical for Google Mobile SEO & Lead Conversion)
-  const [isLangModalOpen, setIsLangModalOpen] = useState<boolean>(false);
+  // Language Modal State: Show full screen language selection on first load unless already selected
+  const [isLangModalOpen, setIsLangModalOpen] = useState<boolean>(() => {
+    const hasSelected = localStorage.getItem('prakash_physio_lang_selected');
+    return !hasSelected;
+  });
 
-  // Active Section Highlighting for Smooth-Scroll Navigation
+  // Page Navigation State & Active Section Highlighting
+  const [currentPage, setCurrentPage] = useState<string>('home');
   const [activeSection, setActiveSection] = useState<string>('home');
 
-  // Modals
-  const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
-  const [selectedBlogPost, setSelectedBlogPost] = useState<BlogPost | null>(null);
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState<boolean>(false);
-  const [appointmentCondition, setAppointmentCondition] = useState<string>('');
-
-  // URL Hash & Query Parameter Listener for Direct SEO Links & QR Codes
+  // URL Hash & Query Parameter Listener for QR codes & Direct Links
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    const params = new URLSearchParams(window.location.search);
-    const treatmentParam = params.get('treatment');
-    const blogParam = params.get('blog');
-    const bookParam = params.get('book');
+    const hash = window.location.hash.toLowerCase();
+    const search = window.location.search.toLowerCase();
 
-    if (treatmentParam) {
-      const found = treatmentsData.find(
-        (t) => t.id === treatmentParam || t.slug === treatmentParam
-      );
-      if (found) setSelectedTreatment(found);
-    }
-
-    if (blogParam) {
-      const foundPost = blogPostsData.find(
-        (b) => b.id === blogParam || b.slug === blogParam
-      );
-      if (foundPost) setSelectedBlogPost(foundPost);
-    }
-
-    if (bookParam) {
-      setAppointmentCondition(bookParam === 'true' ? '' : bookParam);
-      setIsAppointmentOpen(true);
-    }
-
-    if (hash) {
-      const targetId =
-        hash === 'seo-locations'
-          ? 'locations'
-          : hash.includes('review')
-          ? 'reviews'
-          : hash;
+    if (hash.includes('review') || search.includes('review')) {
+      setCurrentPage('reviews');
+      setActiveSection('reviews');
+    } else if (hash.includes('treatment')) {
+      setCurrentPage('treatments');
+      setActiveSection('treatments');
+    } else if (hash.includes('contact')) {
+      setCurrentPage('contact');
+      setActiveSection('contact');
+    } else if (hash.includes('doctor')) {
+      setCurrentPage('home');
+      setActiveSection('doctor');
       setTimeout(() => {
-        const elem = document.getElementById(targetId);
-        if (elem) {
-          elem.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(targetId);
-        }
-      }, 200);
+        const elem = document.getElementById('doctor');
+        if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
     }
   }, []);
 
-  // Scroll spy for Navbar active state
+  // Modals
+  const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState<boolean>(false);
+  const [appointmentCondition, setAppointmentCondition] = useState<string>('');
+
+  // Scroll position listener for dynamic Navbar highlighting on home page
   useEffect(() => {
-    const sectionIds = ['home', 'treatments', 'doctor', 'stories', 'reviews', 'faq', 'locations', 'contact'];
+    if (currentPage !== 'home') {
+      setActiveSection(currentPage);
+      return;
+    }
+
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 180;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const id = sectionIds[i];
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(id);
-          break;
+      const doctorElem = document.getElementById('doctor');
+      if (doctorElem) {
+        const rect = doctorElem.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.15) {
+          setActiveSection('doctor');
+        } else if (window.scrollY < 300) {
+          setActiveSection('home');
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentPage]);
 
   const handleLanguageSelect = (selectedLang: Language) => {
     setLang(selectedLang);
@@ -121,21 +98,31 @@ export default function App() {
     localStorage.setItem('prakash_physio_lang_selected', 'true');
   };
 
-  const handleNavigate = (sectionId: string) => {
-    const targetId = sectionId === 'seo-locations' ? 'locations' : sectionId;
-    setActiveSection(targetId);
-
-    if (targetId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.replaceState(null, '', '/');
+  const handleNavigate = (pageId: string) => {
+    if (pageId === 'doctor') {
+      setCurrentPage('home');
+      setActiveSection('doctor');
+      setTimeout(() => {
+        const elem = document.getElementById('doctor');
+        if (elem) {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 50);
       return;
     }
 
-    const elem = document.getElementById(targetId);
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
-      window.history.replaceState(null, '', `#${targetId}`);
+    if (pageId === 'home') {
+      setCurrentPage('home');
+      setActiveSection('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+
+    setCurrentPage(pageId);
+    setActiveSection(pageId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectConditionFromHero = (conditionId: string) => {
@@ -155,10 +142,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col selection:bg-sky-100 selection:text-[#0F4C81]">
       
-      {/* Dynamic SEO Schema & Meta Synchronization */}
-      <SeoSchema lang={lang} currentPage={activeSection} />
+      {/* Inject SEO Structured JSON-LD Schema & Dynamic Meta Manager */}
+      <SeoSchema lang={lang} currentPage={currentPage} />
 
-      {/* Top Bar with Helpline, Location & Direct 1-Tap Language Toggle */}
+      {/* Top Bar with Helpline, Location & Language Toggle */}
       <TopBar
         lang={lang}
         onLanguageChange={handleLanguageSelect}
@@ -173,87 +160,185 @@ export default function App() {
         onOpenAppointment={() => handleOpenAppointmentWithCondition()}
       />
 
-      {/* COMPLETE SINGLE-SCROLL CONTENT FOR MAXIMUM SEO INDEXING & MOBILE LEAD CONVERSION */}
+      {/* MAIN CONTENT AREA BY CURRENT PAGE */}
       <main className="flex-grow">
-        {/* 1. Hero Section + Instant 10-Second Callback Lead Capture */}
-        <HeroSection
-          lang={lang}
-          onOpenAppointment={() => handleOpenAppointmentWithCondition()}
-          onSelectCondition={handleSelectConditionFromHero}
-        />
+        {/* PAGE 1: HOME PAGE (Hero + About Doctor) */}
+        {currentPage === 'home' && (
+          <div>
+            <HeroSection
+              lang={lang}
+              onOpenAppointment={() => handleOpenAppointmentWithCondition()}
+              onSelectCondition={handleSelectConditionFromHero}
+            />
 
-        {/* 2. Verified Google Rating & Serving Area Trust Strip */}
-        <TrustStrip lang={lang} />
+            <AboutDoctor
+              lang={lang}
+              onOpenAppointment={() => handleOpenAppointmentWithCondition()}
+            />
 
-        {/* 3. Specialized Physiotherapy Treatments & Services (All 10 Conditions Crawlable) */}
-        <TreatmentsSection
-          lang={lang}
-          onSelectTreatment={(t) => setSelectedTreatment(t)}
-        />
+            {/* Simple Clean CTA Strip on Home Page */}
+            <section className="bg-[#0F4C81] text-white py-12 px-4 text-center">
+              <div className="max-w-4xl mx-auto space-y-4">
+                <h3 className="text-xl sm:text-2xl font-bold font-poppins">
+                  {lang === 'hi'
+                    ? 'बिना ऑपरेशन दर्द से राहत पाएं — परामर्श हेतु आज ही संपर्क करें'
+                    : 'Get Non-Surgical Pain Relief — Contact Us For Consultation Today'}
+                </h3>
+                <p className="text-sky-100 text-sm max-w-2xl mx-auto">
+                  {lang === 'hi'
+                    ? 'भीमनगर, बीरपुर, सुपौल व नेपाल बॉर्डर के मरीजों के लिए ओपीडी परामर्श एवं घर पर इलाज (Home Visit) की सुविधा उपलब्ध।'
+                    : 'Expert OPD consultation and Home Visit physiotherapy for patients across Bhimnagar, Birpur, Supaul & Nepal border.'}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => handleNavigate('treatments')}
+                    className="bg-white text-[#0F4C81] hover:bg-sky-50 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+                  >
+                    {lang === 'hi' ? 'सभी इलाज व सेवाएं देखें →' : 'View All Treatments →'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleOpenAppointmentWithCondition()}
+                    className="bg-amber-400 hover:bg-amber-500 text-slate-950 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+                  >
+                    {lang === 'hi' ? 'अपॉइंटमेंट बुक करें' : 'Book Appointment'}
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
 
-        {/* 4. About Dr. Abhay Prakash Tiwari (M.P.T. Ortho New Delhi) & Certificates */}
-        <AboutDoctor
-          lang={lang}
-          onOpenAppointment={() => handleOpenAppointmentWithCondition()}
-        />
+        {/* PAGE 2: TREATMENTS PAGE */}
+        {currentPage === 'treatments' && (
+          <div>
+            <div className="bg-gradient-to-r from-[#0F4C81] to-[#125996] text-white py-10 px-4">
+              <div className="max-w-7xl mx-auto text-center space-y-2">
+                <span className="text-xs font-bold text-amber-300 uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full inline-block">
+                  {lang === 'hi' ? 'विशेषज्ञ फिजियोथेरेपी सेवाएं' : 'Specialized Physiotherapy'}
+                </span>
+                <h1 className="text-2xl sm:text-4xl font-extrabold font-poppins">
+                  {lang === 'hi' ? 'मुख्य इलाज एवं सेवाएं' : 'Treatments & Services'}
+                </h1>
+                <p className="text-sky-100 text-sm max-w-2xl mx-auto">
+                  {lang === 'hi'
+                    ? 'कमर दर्द, साइटिका, सर्वाइकल, घुटने का दर्द, लकवा (पैरालिसिस) व एडवांस थेरेपी'
+                    : 'Advanced non-surgical therapies for spine, joint pain, paralysis and sports injuries'}
+                </p>
+              </div>
+            </div>
 
-        {/* 5. Why Choose Us Features */}
-        <WhyChooseUs lang={lang} />
+            <TreatmentsSection
+              lang={lang}
+              onSelectTreatment={(t) => setSelectedTreatment(t)}
+            />
+          </div>
+        )}
 
-        {/* 6. Real Verified Patient Case Studies (Before & After Outcomes) */}
-        <RecoveryStories lang={lang} />
+        {/* PAGE 3: REVIEWS PAGE */}
+        {currentPage === 'reviews' && (
+          <div>
+            <div className="bg-gradient-to-r from-slate-900 to-[#0F4C81] text-white py-10 px-4">
+              <div className="max-w-7xl mx-auto text-center space-y-2">
+                <span className="text-xs font-bold text-amber-300 uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full inline-block">
+                  {lang === 'hi' ? 'मरीजों के अनुभव एवं सवाल' : 'Patient Reviews & FAQ'}
+                </span>
+                <h1 className="text-2xl sm:text-4xl font-extrabold font-poppins">
+                  {lang === 'hi' ? 'मरीजों की राय व अक्सर पूछे जाने वाले प्रश्न' : 'Patient Reviews & FAQs'}
+                </h1>
+                <p className="text-slate-300 text-sm max-w-2xl mx-auto">
+                  {lang === 'hi'
+                    ? 'संतुष्ट मरीजों के अनुभव एवं इलाज से जुड़े आम प्रश्नों के उत्तर'
+                    : 'Real feedback from patients and answers to common treatment questions'}
+                </p>
+              </div>
+            </div>
 
-        {/* 7. Google Maps & Patient Reviews Section */}
-        <GoogleReviews lang={lang} />
+            <GoogleReviews lang={lang} />
+            <FAQSection lang={lang} />
+          </div>
+        )}
 
-        {/* 8. Real Clinic & Modality Photo Gallery */}
-        <PhotoGallery lang={lang} />
+        {/* PAGE 4: CONTACT PAGE */}
+        {currentPage === 'contact' && (
+          <div>
+            <div className="bg-gradient-to-r from-[#0F4C81] to-slate-900 text-white py-10 px-4">
+              <div className="max-w-7xl mx-auto text-center space-y-2">
+                <span className="text-xs font-bold text-amber-300 uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full inline-block">
+                  {lang === 'hi' ? 'क्लिनिक पता व संपर्क' : 'Clinic Location & Contact'}
+                </span>
+                <h1 className="text-2xl sm:text-4xl font-extrabold font-poppins">
+                  {lang === 'hi' ? 'हमसे संपर्क करें एवं अपॉइंटमेंट लें' : 'Contact Us & Appointment'}
+                </h1>
+                <p className="text-sky-100 text-sm max-w-2xl mx-auto">
+                  {lang === 'hi'
+                    ? 'भंटाबारी रोड, भीमनगर (शैलेशपुर), बीरपुर, सुपौल - पारदर्शी फीस एवं फोन/व्हाट्सएप संपर्क'
+                    : 'Bhantabari Road, Bhimnagar (Shaileshpur), Birpur, Supaul - Direct Phone & WhatsApp'}
+                </p>
+              </div>
+            </div>
 
-        {/* 9. Frequently Asked Questions (All Answers in DOM for Google Rich Snippets) */}
-        <FAQSection lang={lang} />
+            <ContactSection
+              lang={lang}
+              initialCondition={appointmentCondition}
+              onFormSubmitted={() => {}}
+            />
+          </div>
+        )}
 
-        {/* 10. Health & Physiotherapy Educational Blog */}
-        <BlogSection
-          lang={lang}
-          onSelectArticle={(post) => setSelectedBlogPost(post)}
-        />
+        {/* PAGE 5: HIDDEN LOCAL SEO PAGE (60+ Serving Locations) */}
+        {currentPage === 'seo-locations' && (
+          <div>
+            <div className="bg-slate-900 text-white py-10 px-4 border-b border-slate-800">
+              <div className="max-w-7xl mx-auto space-y-2">
+                <div className="flex items-center gap-2 text-xs text-amber-400 font-bold">
+                  <button type="button" onClick={() => handleNavigate('home')} className="hover:underline">
+                    {lang === 'hi' ? 'गृह पृष्ठ' : 'Home'}
+                  </button>
+                  <span>/</span>
+                  <span className="text-slate-300">
+                    {lang === 'hi' ? 'स्थानीय सेवारत 60+ गांव व स्थान' : 'Local SEO Location Directory'}
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold font-poppins text-white">
+                  {lang === 'hi' ? '60+ सेवारत गांव, शहर व स्थानीय एसईओ क्षेत्र' : 'Service Areas & Local SEO Directory (60+ Towns)'}
+                </h1>
+                <p className="text-slate-400 text-sm max-w-3xl">
+                  {lang === 'hi'
+                    ? 'सुपौल, अररिया, बीरपुर, भीमनगर तथा नेपाल सीमा क्षेत्र (सप्तरी/राजविराज) के सभी 60+ गांवों हेतु ओपीडी एवं होम विजिट (Home Visit) सेवा जानकारी।'
+                    : 'OPD and Home Visit physiotherapy service directory covering 60+ villages across Supaul, Araria and Nepal border area.'}
+                </p>
+              </div>
+            </div>
 
-        {/* 11. Clinic Location Map, Transparent Fees & Fast WhatsApp Booking Form */}
-        <ContactSection
-          lang={lang}
-          initialCondition={appointmentCondition}
-          onFormSubmitted={() => {}}
-        />
-
-        {/* 12. 60+ Local Villages & Towns Coverage Directory (Supaul, Birpur, Araria, Nepal Border) */}
-        <NearbyLocationsSection
-          lang={lang}
-          onSelectLocationForBooking={(locName) =>
-            handleOpenAppointmentWithCondition(
-              lang === 'hi'
-                ? `${locName} के मरीज हेतु परामर्श बुकिंग`
-                : `Appointment Booking for Patient from ${locName}`
-            )
-          }
-        />
-
-        {/* 13. Official Clinic Signboard & 24/7 Helpline Banner */}
-        <SignboardBanner lang={lang} />
+            <NearbyLocationsSection
+              lang={lang}
+              onSelectLocationForBooking={(locName) =>
+                handleOpenAppointmentWithCondition(
+                  lang === 'hi'
+                    ? `${locName} के मरीज हेतु परामर्श बुकिंग`
+                    : `Appointment Booking for Patient from ${locName}`
+                )
+              }
+            />
+          </div>
+        )}
       </main>
 
-      {/* Footer with Crawlable Internal Links to Dedicated SEO Pages */}
+      {/* Footer */}
       <Footer
         lang={lang}
         onNavigate={handleNavigate}
       />
 
-      {/* Sticky Bottom Bar for Mobile + Floating WhatsApp/Call Widget for Desktop */}
+      {/* Sticky Bottom Bar for Mobile Android Users */}
       <StickyMobileBar
         lang={lang}
         onOpenAppointment={() => handleOpenAppointmentWithCondition()}
       />
 
-      {/* Optional Language Modal (Only if manually opened) */}
+      {/* Language Selector Modal on First Load / Toggle */}
       <LanguageSelectorModal
         isOpen={isLangModalOpen}
         currentLanguage={lang}
@@ -270,14 +355,6 @@ export default function App() {
         lang={lang}
         onClose={() => setSelectedTreatment(null)}
         onBookTreatment={(condName) => handleOpenAppointmentWithCondition(condName)}
-      />
-
-      {/* Blog Detail Modal */}
-      <BlogDetailModal
-        post={selectedBlogPost}
-        lang={lang}
-        onClose={() => setSelectedBlogPost(null)}
-        onBookAppointment={() => handleOpenAppointmentWithCondition()}
       />
 
       {/* Appointment Booking Modal */}
